@@ -1,5 +1,5 @@
 
-.tree-input-tooltip {
+.json-view-tooltip {
   $tooltip-color: rgb(62, 62, 62);
   position: absolute;
   max-width: 200px;
@@ -11,7 +11,7 @@
   transition: all ease-out 200ms;
   box-shadow: rgba(0, 0, 0, 0.07) 3px 3px 7px 0;
   font-size: 13px;
-  .tree-input-tooltip-arrow {
+  .json-view-tooltip-arrow {
     position: absolute;
     width: 10px;
     height: 10px;

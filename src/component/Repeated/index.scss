@@ -2,8 +2,8 @@
 @import "../../variables";
 
 
-.tree-input-repeated {
-  //.tree-input, .tree-input-repeated-item {
+.json-view-repeated {
+  //.json-view, .json-view-repeated-item {
   //  animation: repeated-item-init ease 300ms forwards;
   //  transform: translateX(100px);
   //  opacity: 0.3;
@@ -18,21 +18,21 @@
   //    }
   //  }
   //}
-  .tree-input-repeated-item {
+  .json-view-repeated-item {
     display: inline-flex;
     align-items: center;
     margin: 10px 20px 5px 0;
-    .tree-input-repeated-item-index {
+    .json-view-repeated-item-index {
       display: inline-block;
       width: 30px;
       font-weight: bolder;
     }
-    .tree-input-repeated-item-input {
+    .json-view-repeated-item-input {
       width: 120px;
     }
   }
 
-  .tree-input-add, .tree-input-remove {
+  .json-view-add, .json-view-remove {
     font-size: 24px;
     cursor: pointer;
     transition: all ease 300ms;
@@ -42,10 +42,10 @@
       transform: scale(1.3) rotate(-180deg);
     }
   }
-  .tree-input-add {
+  .json-view-add {
     margin-left: 26px;
   }
-  .tree-input-remove {
+  .json-view-remove {
     margin-left: 10px;
   }
 }

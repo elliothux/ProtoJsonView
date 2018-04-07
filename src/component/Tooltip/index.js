@@ -10,10 +10,10 @@ function Tooltip(props) {
   return (
     <div
       if={text.trim()}
-      className="tree-input-tooltip"
+      className="json-view-tooltip"
     >
       <span>{text}</span>
-      <div className="tree-input-tooltip-arrow" />
+      <div className="json-view-tooltip-arrow" />
     </div>
   );
 }

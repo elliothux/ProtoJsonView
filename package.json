@@ -8,12 +8,13 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline --cache --devtool eval --port 2333",
     "build": "webpack",
-    "example": "webpack-dev-server --config ./example/webpack.config.js --open",
+    "example": "webpack-dev-server --config ./example/webpack.config.js --open --hot --inline --cache --devtool eval",
     "test": "mocha",
     "lint": "eslint ./",
     "lintfix": "eslint ./ --fix"
   },
   "dependencies": {
+    "json-parser": "file:../json-parser",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },

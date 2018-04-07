@@ -2,7 +2,7 @@
 @import "../../variables";
 
 
-.tree-input {
+.json-view {
   margin: 8px 10px;
   transition: all ease 300ms;
   height: auto;
@@ -19,20 +19,20 @@
     background-color: rgba(0, 43, 54, 0.15);
     position: absolute;
   }
-  .tree-input-start, .tree-input-end {
+  .json-view-start, .json-view-end {
     position: relative;
     cursor: pointer;
     height: 25px;
     user-select: none;
   }
-  .tree-input-start {
+  .json-view-start {
     left: -6px;
     display: inline-flex;
     justify-content: flex-start;
     align-items: center;
     position: relative;
     top: 3px;
-    .tree-input-expand {
+    .json-view-expand {
       width: 18px;
       height: 18px;
       fill: $text-color;
@@ -42,7 +42,7 @@
       transition: all ease 300ms;
       transform: rotate(90deg);
     }
-    .tree-input-count, .tree-input-count-empty {
+    .json-view-count, .json-view-count-empty {
       display: inline-block;
       margin-left: 20px;
       opacity: 0.8;
@@ -50,26 +50,26 @@
       color: $count-color;
       min-width: 60px;
     }
-    .tree-input-name {
+    .json-view-name {
       font-weight: bold;
       min-width: 40px;
       margin-right: 8px;
       font-size: 15px;
     }
-    .tree-input-tag {
+    .json-view-tag {
       margin: 0 8px;
     }
-    .tree-input-remove {
+    .json-view-remove {
       margin-left: 20px;
     }
   }
-  .tree-input-end {
+  .json-view-end {
     left: -3px;
     display: inline-block;
   }
-  .tree-input-items {
+  .json-view-items {
     margin-left: 40px;
-    .tree-input-item {
+    .json-view-item {
       height: 32px;
       margin: 8px 0;
       font-size: 14px;
@@ -79,10 +79,10 @@
       & > span, & > input {
         display: inline-block;
       }
-      .tree-input-item-info {
+      .json-view-item-info {
         position: relative;
         min-width: 240px;
-        .tree-input-item-name {
+        .json-view-item-name {
           font-size: 15px;
           font-weight: bolder;
           cursor: pointer;
@@ -92,11 +92,11 @@
     }
   }
 
-  .tree-input-item-input,
-  .tree-input-item-enum,
-  .tree-input-enum-options,
-  .tree-input-item-boolean,
-  .tree-input-repeated-item-input {
+  .json-view-item-input,
+  .json-view-item-enum,
+  .json-view-enum-options,
+  .json-view-item-boolean,
+  .json-view-repeated-item-input {
     min-width: 150px;
     width: 220px;
     height: 32px;
@@ -108,7 +108,7 @@
     color: rgba(0, 0, 0, 0.65);
     transition: all ease 300ms;
     background: white;
-    &::placeholder, .tree-input-place-holder {
+    &::placeholder, .json-view-place-holder {
       font-family: $font-family;
       font-size: 13px;
       opacity: 0.8;
@@ -122,17 +122,17 @@
   }
 }
 
-.tree-input.tree-input-collapsed {
+.json-view.json-view-collapsed {
   height: 32px;
   border-left: none;
-  .tree-input-start {
-    .tree-input-expand {
+  .json-view-start {
+    .json-view-expand {
       color: inherit;
       fill: inherit;
       transform: rotate(0deg);
     }
   }
-  .tree-input-items, .tree-input-end {
+  .json-view-items, .json-view-end {
     display: none;
   }
 }

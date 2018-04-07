@@ -2,7 +2,7 @@
 @import "./variables";
 
 
-.tree-input-root {
+.json-view-root {
   margin: 0 0 0 40px;
   padding: 0;
   font-family: $font-family;
@@ -12,65 +12,65 @@
   -ms-user-select: none;
   user-select: none;
 
-  .tree-input-hide {
+  .json-view-hide {
     opacity: 0;
   }
-  .tree-input-name, .tree-input-item-name {
-    .tree-input-tooltip {
+  .json-view-name, .json-view-item-name {
+    .json-view-tooltip {
       transform: scale(0.1) translateY(calc(-200% - 26px));
       opacity: 0;
     }
     &:hover {
-      .tree-input-tooltip {
+      .json-view-tooltip {
         transform: scale(1) translateY(calc(-100% - 26px));
         opacity: 1;
       }
     }
   }
-  .tree-input-points {
+  .json-view-points {
     font-weight: bolder;
     font-size: 16px;
     line-height: 5px;
     letter-spacing: -0.1em;
   }
-  .tree-input-tag {
+  .json-view-tag {
     font-weight: bolder;
   }
-  .tree-input-item-type {
+  .json-view-item-type {
     margin-right: 20px;
     font-style: italic;
     font-size: 14px;
   }
 
   // Colors
-  .tree-input-repeated {
-    .tree-input-add {
+  .json-view-repeated {
+    .json-view-add {
       color: rgb(72, 184, 245);
       fill: rgb(72, 184, 245);
     }
-    .tree-input-remove {
+    .json-view-remove {
       color: rgb(243, 93, 111);
       fill: rgb(243, 93, 111);
     }
   }
   .message {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points {
       color: rgb(243, 93, 111);
       fill: rgb(243, 93, 111);
     }
   }
   .boolean {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points {
       color: rgb(51, 211, 145);
       fill: rgb(51, 211, 145);
     }
-    .tree-input-item-boolean {
+    .json-view-item-boolean {
       border-color: rgba(51, 211, 145, 0.4);
-      &.tree-input-false {
+      &.json-view-false {
         border-color: rgba(243, 7, 3, 0.44);
         & > div:first-child {
           border-color: white;
@@ -82,14 +82,14 @@
       & > div:first-child {
         border-color: rgba(51, 211, 145, 0.4);
         color: rgb(51, 211, 145);
-        &:hover, &.tree-input-boolean-active {
+        &:hover, &.json-view-boolean-active {
           background-color: rgb(51, 211, 145);
           color: white;
         }
       }
       & > div:last-child {
         color: rgb(243, 93, 111);
-        &:hover, &.tree-input-boolean-active {
+        &:hover, &.json-view-boolean-active {
           background-color: rgb(243, 93, 111);
           color: white;
         }
@@ -97,27 +97,27 @@
     }
   }
   .enum {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points {
       color: rgb(200, 78, 230);
       fill: rgb(200, 78, 230);
     }
-    .tree-input-item-enum {
-      .tree-input-item-enum-value {
-        .tree-input-item-expand-icon {
+    .json-view-item-enum {
+      .json-view-item-enum-value {
+        .json-view-item-expand-icon {
           color: rgb(208, 36, 208);
           fill: rgb(208, 36, 208);
         }
       }
       color: rgb(200, 78, 230);
       border-color: rgba(200, 78, 230, 0.4);
-      &.active, .tree-input-enum-options {
+      &.active, .json-view-enum-options {
         border-color: rgb(200, 78, 230);
         box-shadow: 0 0 4px 1px rgba(200, 78, 230, 0.71);
       }
-      .tree-input-enum-options {
-        .tree-input-enum-option {
+      .json-view-enum-options {
+        .json-view-enum-option {
           &.active {
             font-weight: bold;
             background-color: rgb(221, 104, 217);
@@ -132,14 +132,14 @@
     }
   }
   .string, .bytes {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points,
-    .tree-input-item-input, .tree-input-repeated-item-input {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points,
+    .json-view-item-input, .json-view-repeated-item-input {
       color: rgb(233, 120, 42);
       fill: rgb(233, 120, 42);
     }
-    .tree-input-item-input, .tree-input-repeated-item-input {
+    .json-view-item-input, .json-view-repeated-item-input {
       border-color: rgba(233, 120, 42, 0.4);
       &:focus {
         border-color: rgb(233, 120, 42);
@@ -148,16 +148,16 @@
     }
   }
   .double, .float {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points,
-    .tree-input-item-input,
-    .tree-input-repeated-item-input {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points,
+    .json-view-item-input,
+    .json-view-repeated-item-input {
       color: rgb(133, 153, 0);
       fill: rgb(133, 153, 0);
     }
-    .tree-input-item-input,
-    .tree-input-repeated-item-input {
+    .json-view-item-input,
+    .json-view-repeated-item-input {
       border-color: rgba(133, 153, 0, 0.4);
       &:focus {
         border-color: rgb(133, 153, 0);
@@ -166,16 +166,16 @@
     }
   }
   .int32, .uint32, .sint32, .fixed32, .sfixed32 {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points,
-    .tree-input-item-input,
-    .tree-input-repeated-item-input {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points,
+    .json-view-item-input,
+    .json-view-repeated-item-input {
       color: rgb(35, 173, 219);
       fill: rgb(35, 173, 219);
     }
-    .tree-input-item-input,
-    .tree-input-repeated-item-input {
+    .json-view-item-input,
+    .json-view-repeated-item-input {
       border-color: rgba(35, 173, 219, 0.4);
       &:focus {
         border-color: rgb(35, 173, 219);
@@ -184,16 +184,16 @@
     }
   }
   .int64, .uint64, .sint64, .fixed64, .sfixed64 {
-    .tree-input-item-type,
-    .tree-input-expand,
-    .tree-input-points,
-    .tree-input-item-input,
-    .tree-input-repeated-item-input {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points,
+    .json-view-item-input,
+    .json-view-repeated-item-input {
       color: rgb(78, 134, 222);
       fill: rgb(78, 134, 222);
     }
-    .tree-input-item-input,
-    .tree-input-repeated-item-input {
+    .json-view-item-input,
+    .json-view-repeated-item-input {
       border-color: rgba(78, 134, 222, 0.4);
       &:focus {
         border-color: rgb(78, 134, 222);

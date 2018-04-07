@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import Input from '../Input';
+import Value from '../Value';
 import Message from '../Message';
 import Icon from '../Icon';
-import { deepCopy, noop, preventDefault, types } from '../../utils';
+import {preventDefault, types, typesMap} from '../../utils.js';
 
 import './index.scss';
 import Tooltip from '../Tooltip';
@@ -12,178 +12,118 @@ import Tooltip from '../Tooltip';
 
 class Repeated extends Component {
     static propTypes = {
-      value: PropTypes.array.isRequired,
-      typeOrFieldInfo: PropTypes.oneOfType([
-        PropTypes.oneOf(types),
-        PropTypes.array,
-      ]).isRequired,
-      collapsed: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]).isRequired,
-      nestedDepth: PropTypes.number.isRequired,
-      documentation: PropTypes.string,
-      onChange: PropTypes.func,
+        value: PropTypes.array.isRequired,
+        type: PropTypes.oneOf(types).isRequired,
+        collapsed: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.bool
+        ]).isRequired,
+        nestedDepth: PropTypes.number.isRequired,
+        documentation: PropTypes.string
     };
     static defaultProps = {
-      documentation: '',
-      onChange: noop,
+        documentation: ''
     };
 
     constructor(...args) {
-      super(...args);
-      const { nestedDepth, collapsed } = this.props;
-      this.state = {
-        collapsed: typeof collapsed === 'number' ?
-          nestedDepth >= collapsed : !!collapsed,
-      };
+        super(...args);
+        const {nestedDepth, collapsed} = this.props;
+        this.state = {
+            collapsed: typeof collapsed === 'number' ?
+                nestedDepth >= collapsed : !!collapsed,
+        };
     }
 
-    state = { collapsed: false };
-
-    get isMessage() {
-      const { typeOrFieldInfo } = this.props;
-      return typeof typeOrFieldInfo !== 'string';
-    }
+    state = {collapsed: false};
 
     handleToggleCollapsed = (e, collapsed) => {
-      preventDefault(e);
-      this.setState({
-        collapsed: typeof collapsed === 'boolean' ?
-          collapsed : !this.state.collapsed,
-      });
-    };
-    handleAddInputItem = (e) => {
-      const { value: newValue } = this.props;
-      newValue.push('');
-      this.props.onChange(e, newValue);
-      this.handleToggleCollapsed(e, false);
-    };
-    handleAddMessageItem = (e) => {
-      const {
-        value: newValue,
-        typeOrFieldInfo: fieldInfo,
-      } = this.props;
-      newValue.push(deepCopy(fieldInfo));
-      this.props.onChange(e, newValue);
-      this.handleToggleCollapsed(e, false);
-    };
-    handleAddItem = (e) => {
-      preventDefault(e);
-      if (this.isMessage) {
-        this.handleAddMessageItem(e);
-      } else {
-        this.handleAddInputItem(e);
-      }
-    };
-    handleRemoveItem = (e, index) => {
-      preventDefault(e);
-      const { value: newValue } = this.props;
-      newValue.splice(index, 1);
-      this.props.onChange(e, newValue);
-
-      if (newValue.length === 0) {
-        this.handleToggleCollapsed(e, true);
-      }
+        preventDefault(e);
+        this.setState({
+            collapsed: typeof collapsed === 'boolean' ?
+                collapsed : !this.state.collapsed,
+        });
     };
 
-    generateOnChange = (index) => {
-      return (e, value) => {
-        const { value: newValue } = this.props;
-        newValue[index] = value;
-        this.props.onChange(e, [...newValue]);
-      };
+    renderValue = (value, index) => {
+        const {name, typeOrFieldInfo: type} = this.props;
+        return (
+            <div
+                key={index}
+                className="json-view-repeated-item"
+            >
+                <span className="json-view-repeated-item-index">{index}: </span>
+                <Value
+                    className="json-view-repeated-item-input"
+                    key={`${index}-1`}
+                    name={name}
+                    type={type}
+                    value={value}
+                />
+            </div>
+        );
     };
-    renderInput = (value, index) => {
-      const { name, typeOrFieldInfo: type } = this.props;
-      return (
-        <div
-          key={index}
-          className="tree-input-repeated-item"
-        >
-          <span className="tree-input-repeated-item-index">{index}: </span>
-          <Input
-            className="tree-input-repeated-item-input"
-            key={`${index}-1`}
-            name={name}
-            type={type}
-            value={value}
-            onChange={this.generateOnChange(index)}
-          />
-          <Icon
-            type="REMOVE"
-            className="tree-input-remove icon-remove"
-            onClick={e => this.handleRemoveItem(e, index)}
-          />
-        </div>
-      );
-    };
-    renderMessage = (value, index) => {
-      const { typeOrFieldInfo: fieldInfo } = this.props;
-      const { nestedDepth, collapsed } = this.props;
-      return (
-        <Message
-          key={index}
-          value={value || fieldInfo}
-          name={index.toString()}
-          nestedDepth={nestedDepth + 1}
-          collapsed={collapsed}
-          onChange={this.generateOnChange(index)}
-          onRemove={e => this.handleRemoveItem(e, index)}
-        />
-      );
+    renderMessage = (node, index) => {
+        const {nestedDepth, collapsed} = this.props;
+        const { value } = node;
+        return (
+            <Message
+                key={index}
+                value={value}
+                name={index.toString()}
+                nestedDepth={nestedDepth + 1}
+                collapsed={collapsed}
+            />
+        );
     };
     renderNode = (value, index) => {
-      const { typeOrFieldInfo } = this.props;
-      if (this.isMessage) {
-        return this.renderMessage(value || typeOrFieldInfo, index);
-      }
-      return this.renderInput(value, index);
+        const {type} = this.props;
+        if (type === typesMap.MESSAGE) {
+            return this.renderMessage(value, index);
+        }
+        return this.renderValue(value, index);
     };
 
     render() {
-      const { collapsed } = this.state;
-      const {
-        value,
-        value: { length },
-        name,
-        documentation,
-        typeOrFieldInfo,
-      } = this.props;
-      const isMessage = typeof typeOrFieldInfo !== 'string';
-      const isEmpty = length === 0;
-      return (
-        <div
-          className={`tree-input-repeated tree-input${
-                    collapsed ? ' tree-input-collapsed' : ''} ${isMessage ? 'message' : typeOrFieldInfo}`}
-          key={name}
-        >
-          <div
-            className="tree-input-start"
-            onClick={this.handleToggleCollapsed}
-          >
-            <Icon type="COLLAPSED" className="tree-input-expand" />
-            <div className="tree-input-name">
-              <span>{`"${name}": `}</span>
-              <Tooltip text={documentation} />
-            </div>
-            <span className="tree-input-item-type"> {isMessage ? 'message' : typeOrFieldInfo}[]</span>
-            <span className="tree-input-tag">[</span>
-            <span className={collapsed ? '' : 'tree-input-hide'}>
-              <span className={`tree-input-points${isEmpty ? ' tree-input-hide' : ''}`}>...</span>
-              <span className="tree-input-tag">]</span>
+        const {collapsed} = this.state;
+        const {
+            value,
+            value: {length},
+            name,
+            documentation,
+            typeOrFieldInfo,
+        } = this.props;
+        const isMessage = typeof typeOrFieldInfo !== 'string';
+        const isEmpty = length === 0;
+        return (
+            <div
+                className={`json-view-repeated json-view${
+                    collapsed ? ' json-view-collapsed' : ''} ${isMessage ? 'message' : typeOrFieldInfo}`}
+                key={name}
+            >
+                <div
+                    className="json-view-start"
+                    onClick={this.handleToggleCollapsed}
+                >
+                    <Icon type="COLLAPSED" className="json-view-expand"/>
+                    <div className="json-view-name">
+                        <span>{`"${name}": `}</span>
+                        <Tooltip text={documentation}/>
+                    </div>
+                    <span className="json-view-item-type"> {isMessage ? 'message' : typeOrFieldInfo}[]</span>
+                    <span className="json-view-tag">[</span>
+                    <span className={collapsed ? '' : 'json-view-hide'}>
+              <span className={`json-view-points${isEmpty ? ' json-view-hide' : ''}`}>...</span>
+              <span className="json-view-tag">]</span>
             </span>
-            <span if={isEmpty} className="tree-input-count-empty">Empty</span>
-            <span else className="tree-input-count">{length} Items</span>
-            <Icon
-              type="ADD"
-              className="tree-input-add icon-add"
-              onClick={this.handleAddItem}
-            />
-          </div>
-          <div className="tree-input-items">{value.map(this.renderNode)}</div>
-          <div className="tree-input-end">
-            <span onClick={this.handleToggleCollapsed}>]</span>
-          </div>
-        </div>
-      );
+                    <span if={isEmpty} className="json-view-count-empty">Empty</span>
+                    <span else className="json-view-count">{length} Items</span>
+                </div>
+                <div className="json-view-items">{value.map(this.renderNode)}</div>
+                <div className="json-view-end">
+                    <span onClick={this.handleToggleCollapsed}>]</span>
+                </div>
+            </div>
+        );
     }
 }
 
