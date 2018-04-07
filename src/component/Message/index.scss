@@ -1,0 +1,138 @@
+
+@import "../../variables";
+
+
+.tree-input {
+  margin: 8px 10px;
+  transition: all ease 300ms;
+  height: auto;
+  //border-left: 1px solid rgb(206, 206, 206);
+  position: relative;
+  left: -22px;
+  color: $text-color;
+  fill: $text-color;
+  &:before {
+    content: '';
+    width: 1px;
+    height: calc(100% - 2 * 25px);
+    top: 25px;
+    background-color: rgba(0, 43, 54, 0.15);
+    position: absolute;
+  }
+  .tree-input-start, .tree-input-end {
+    position: relative;
+    cursor: pointer;
+    height: 25px;
+    user-select: none;
+  }
+  .tree-input-start {
+    left: -6px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    top: 3px;
+    .tree-input-expand {
+      width: 18px;
+      height: 18px;
+      fill: $text-color;
+      position: relative;
+      left: -3px;
+      top: -1px;
+      transition: all ease 300ms;
+      transform: rotate(90deg);
+    }
+    .tree-input-count, .tree-input-count-empty {
+      display: inline-block;
+      margin-left: 20px;
+      opacity: 0.8;
+      font-style: italic;
+      color: $count-color;
+      min-width: 60px;
+    }
+    .tree-input-name {
+      font-weight: bold;
+      min-width: 40px;
+      margin-right: 8px;
+      font-size: 15px;
+    }
+    .tree-input-tag {
+      margin: 0 8px;
+    }
+    .tree-input-remove {
+      margin-left: 20px;
+    }
+  }
+  .tree-input-end {
+    left: -3px;
+    display: inline-block;
+  }
+  .tree-input-items {
+    margin-left: 40px;
+    .tree-input-item {
+      height: 32px;
+      margin: 8px 0;
+      font-size: 14px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      & > span, & > input {
+        display: inline-block;
+      }
+      .tree-input-item-info {
+        position: relative;
+        min-width: 240px;
+        .tree-input-item-name {
+          font-size: 15px;
+          font-weight: bolder;
+          cursor: pointer;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .tree-input-item-input,
+  .tree-input-item-enum,
+  .tree-input-enum-options,
+  .tree-input-item-boolean,
+  .tree-input-repeated-item-input {
+    min-width: 150px;
+    width: 220px;
+    height: 32px;
+    line-height: 1.5;
+    padding: 4px 11px;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transition: all ease 300ms;
+    background: white;
+    &::placeholder, .tree-input-place-holder {
+      font-family: $font-family;
+      font-size: 13px;
+      opacity: 0.8;
+      color: rgb(182, 182, 182);
+    }
+    &:focus {
+      border-color: #40a9ff;
+      outline: none;
+      box-shadow: 0 0 4px 1px rgba(59, 169, 255, 0.71);
+    }
+  }
+}
+
+.tree-input.tree-input-collapsed {
+  height: 32px;
+  border-left: none;
+  .tree-input-start {
+    .tree-input-expand {
+      color: inherit;
+      fill: inherit;
+      transform: rotate(0deg);
+    }
+  }
+  .tree-input-items, .tree-input-end {
+    display: none;
+  }
+}

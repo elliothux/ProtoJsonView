@@ -1,0 +1,22 @@
+
+.tree-input-item-boolean {
+  padding: 0 !important;
+  overflow: hidden;
+  & > div {
+    width: 50%;
+    height: 100%;
+    line-height: 30px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease 300ms;
+    &:hover, &.tree-input-boolean-active {
+      color: white;
+      font-weight: bold;
+    }
+    &:first-child {
+      width: calc(50% - 1px);
+      border-right: 1px solid #d9d9d9;
+    }
+  }
+}

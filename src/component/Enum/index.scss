@@ -1,0 +1,50 @@
+
+@import "../../variables";
+
+
+.tree-input-item-enum {
+  cursor: pointer;
+  z-index: 1;
+  padding: 0 !important;
+  position: relative;
+  &.active {
+    .tree-input-item-expand-icon {
+      transform: rotate(180deg);
+    }
+  }
+  .tree-input-item-enum-value {
+    line-height: 32px;
+    padding: 0 11px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .tree-input-item-expand-icon {
+      width: 16px;
+      height: 16px;
+      font-weight: bolder;
+      font-size: 15px;
+      position: relative;
+      left: 4px;
+      transition: all ease 300ms;
+    }
+  }
+  .tree-input-enum-options {
+    z-index: 2;
+    background-color: $background-color;
+    width: 100% !important;
+    padding: 0 !important;
+    position: relative;
+    top: 4px;
+    overflow: hidden;
+    transition: all ease 300ms;
+    .tree-input-enum-option {
+      padding: 4px 11px;
+      height: 28px;
+      line-height: 28px;
+      box-sizing: content-box;
+      background-color: $background-color;
+      transition: all ease 200ms;
+    }
+  }
+}
