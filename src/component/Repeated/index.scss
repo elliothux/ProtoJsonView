@@ -18,6 +18,8 @@
   //    }
   //  }
   //}
+  //position: relative;
+  //left: -22px;
   .json-view-repeated-item {
     display: inline-flex;
     align-items: center;
@@ -27,25 +29,8 @@
       width: 30px;
       font-weight: bolder;
     }
-    .json-view-repeated-item-input {
-      width: 120px;
+    .json-view-repeated-item-value {
+      margin-right: 26px;
     }
-  }
-
-  .json-view-add, .json-view-remove {
-    font-size: 24px;
-    cursor: pointer;
-    transition: all ease 300ms;
-    width: 24px;
-    height: 24px;
-    &:hover {
-      transform: scale(1.3) rotate(-180deg);
-    }
-  }
-  .json-view-add {
-    margin-left: 26px;
-  }
-  .json-view-remove {
-    margin-left: 10px;
   }
 }

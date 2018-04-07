@@ -44,8 +44,9 @@ class Repeated extends Component {
         });
     };
 
-    renderValue = (value, index) => {
-        const {name, typeOrFieldInfo: type} = this.props;
+    renderValue = (node, index) => {
+        const {name} = this.props;
+        const { type, value } = node;
         return (
             <div
                 key={index}
@@ -53,7 +54,7 @@ class Repeated extends Component {
             >
                 <span className="json-view-repeated-item-index">{index}: </span>
                 <Value
-                    className="json-view-repeated-item-input"
+                    className="json-view-repeated-item-value"
                     key={`${index}-1`}
                     name={name}
                     type={type}
@@ -75,12 +76,12 @@ class Repeated extends Component {
             />
         );
     };
-    renderNode = (value, index) => {
+    renderNode = (node, index) => {
         const {type} = this.props;
         if (type === typesMap.MESSAGE) {
-            return this.renderMessage(value, index);
+            return this.renderMessage(node, index);
         }
-        return this.renderValue(value, index);
+        return this.renderValue(node, index);
     };
 
     render() {
@@ -90,14 +91,14 @@ class Repeated extends Component {
             value: {length},
             name,
             documentation,
-            typeOrFieldInfo,
+            type
         } = this.props;
-        const isMessage = typeof typeOrFieldInfo !== 'string';
         const isEmpty = length === 0;
+
         return (
             <div
                 className={`json-view-repeated json-view${
-                    collapsed ? ' json-view-collapsed' : ''} ${isMessage ? 'message' : typeOrFieldInfo}`}
+                    collapsed ? ' json-view-collapsed' : ''} ${type}`}
                 key={name}
             >
                 <div
@@ -109,7 +110,7 @@ class Repeated extends Component {
                         <span>{`"${name}": `}</span>
                         <Tooltip text={documentation}/>
                     </div>
-                    <span className="json-view-item-type"> {isMessage ? 'message' : typeOrFieldInfo}[]</span>
+                    <span className="json-view-item-type"> {type}[]</span>
                     <span className="json-view-tag">[</span>
                     <span className={collapsed ? '' : 'json-view-hide'}>
               <span className={`json-view-points${isEmpty ? ' json-view-hide' : ''}`}>...</span>

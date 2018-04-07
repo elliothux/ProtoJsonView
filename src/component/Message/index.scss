@@ -3,10 +3,9 @@
 
 
 .json-view {
-  margin: 8px 10px;
+  margin: 8px 11px;
   transition: all ease 300ms;
   height: auto;
-  //border-left: 1px solid rgb(206, 206, 206);
   position: relative;
   left: -22px;
   color: $text-color;
@@ -22,7 +21,8 @@
   .json-view-start, .json-view-end {
     position: relative;
     cursor: pointer;
-    height: 25px;
+    height: 32px;
+    line-height: 32px;
     user-select: none;
   }
   .json-view-start {
@@ -59,9 +59,6 @@
     .json-view-tag {
       margin: 0 8px;
     }
-    .json-view-remove {
-      margin-left: 20px;
-    }
   }
   .json-view-end {
     left: -3px;
@@ -76,12 +73,12 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      & > span, & > input {
+      & > span {
         display: inline-block;
       }
       .json-view-item-info {
         position: relative;
-        min-width: 240px;
+        margin-right: 20px;
         .json-view-item-name {
           font-size: 15px;
           font-weight: bolder;
@@ -92,33 +89,9 @@
     }
   }
 
-  .json-view-item-input,
-  .json-view-item-enum,
-  .json-view-enum-options,
-  .json-view-item-boolean,
-  .json-view-repeated-item-input {
-    min-width: 150px;
-    width: 220px;
-    height: 32px;
-    line-height: 1.5;
-    padding: 4px 11px;
+  .json-view-item-value,
+  .json-view-repeated-item-value {
     box-sizing: border-box;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    color: rgba(0, 0, 0, 0.65);
-    transition: all ease 300ms;
-    background: white;
-    &::placeholder, .json-view-place-holder {
-      font-family: $font-family;
-      font-size: 13px;
-      opacity: 0.8;
-      color: rgb(182, 182, 182);
-    }
-    &:focus {
-      border-color: #40a9ff;
-      outline: none;
-      box-shadow: 0 0 4px 1px rgba(59, 169, 255, 0.71);
-    }
   }
 }
 

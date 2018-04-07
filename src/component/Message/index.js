@@ -60,7 +60,7 @@ class Message extends Component {
                     <span className="json-view-item-type"> {type}</span>
                 </div>
                 <Value
-                    className="json-view-item-input"
+                    className="json-view-item-value"
                     name={name}
                     type={type}
                     value={value}

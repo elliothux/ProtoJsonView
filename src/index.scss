@@ -3,7 +3,7 @@
 
 
 .json-view-root {
-  margin: 0 0 0 40px;
+  margin: 0 0 0 22px;
   padding: 0;
   font-family: $font-family;
   -webkit-touch-callout: none;
@@ -11,6 +11,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  position: relative;
+  left: 0;
 
   .json-view-hide {
     opacity: 0;
@@ -43,16 +45,6 @@
   }
 
   // Colors
-  .json-view-repeated {
-    .json-view-add {
-      color: rgb(72, 184, 245);
-      fill: rgb(72, 184, 245);
-    }
-    .json-view-remove {
-      color: rgb(243, 93, 111);
-      fill: rgb(243, 93, 111);
-    }
-  }
   .message {
     .json-view-item-type,
     .json-view-expand,
@@ -64,70 +56,17 @@
   .boolean {
     .json-view-item-type,
     .json-view-expand,
-    .json-view-points {
+    .json-view-points,
+    .json-view-value {
       color: rgb(51, 211, 145);
       fill: rgb(51, 211, 145);
-    }
-    .json-view-item-boolean {
-      border-color: rgba(51, 211, 145, 0.4);
-      &.json-view-false {
-        border-color: rgba(243, 7, 3, 0.44);
-        & > div:first-child {
-          border-color: white;
-        }
-      }
-      &:hover > div:first-child {
-        border-right-color: #FFFF;
-      }
-      & > div:first-child {
-        border-color: rgba(51, 211, 145, 0.4);
+      &.true {
         color: rgb(51, 211, 145);
-        &:hover, &.json-view-boolean-active {
-          background-color: rgb(51, 211, 145);
-          color: white;
-        }
+        fill: rgb(51, 211, 145);
       }
-      & > div:last-child {
+      &.false {
         color: rgb(243, 93, 111);
-        &:hover, &.json-view-boolean-active {
-          background-color: rgb(243, 93, 111);
-          color: white;
-        }
-      }
-    }
-  }
-  .enum {
-    .json-view-item-type,
-    .json-view-expand,
-    .json-view-points {
-      color: rgb(200, 78, 230);
-      fill: rgb(200, 78, 230);
-    }
-    .json-view-item-enum {
-      .json-view-item-enum-value {
-        .json-view-item-expand-icon {
-          color: rgb(208, 36, 208);
-          fill: rgb(208, 36, 208);
-        }
-      }
-      color: rgb(200, 78, 230);
-      border-color: rgba(200, 78, 230, 0.4);
-      &.active, .json-view-enum-options {
-        border-color: rgb(200, 78, 230);
-        box-shadow: 0 0 4px 1px rgba(200, 78, 230, 0.71);
-      }
-      .json-view-enum-options {
-        .json-view-enum-option {
-          &.active {
-            font-weight: bold;
-            background-color: rgb(221, 104, 217);
-            color: white;
-          }
-          &:hover {
-            color: white;
-            background-color: rgb(191, 92, 205);
-          }
-        }
+        fill: rgb(243, 93, 111);
       }
     }
   }
@@ -135,70 +74,50 @@
     .json-view-item-type,
     .json-view-expand,
     .json-view-points,
-    .json-view-item-input, .json-view-repeated-item-input {
+    .json-view-item-value,
+    .json-view-repeated-item-value {
       color: rgb(233, 120, 42);
       fill: rgb(233, 120, 42);
-    }
-    .json-view-item-input, .json-view-repeated-item-input {
-      border-color: rgba(233, 120, 42, 0.4);
-      &:focus {
-        border-color: rgb(233, 120, 42);
-        box-shadow: 0 0 4px 1px rgba(233, 120, 42, 0.71);
-      }
     }
   }
   .double, .float {
     .json-view-item-type,
     .json-view-expand,
     .json-view-points,
-    .json-view-item-input,
-    .json-view-repeated-item-input {
-      color: rgb(133, 153, 0);
-      fill: rgb(133, 153, 0);
-    }
-    .json-view-item-input,
-    .json-view-repeated-item-input {
-      border-color: rgba(133, 153, 0, 0.4);
-      &:focus {
-        border-color: rgb(133, 153, 0);
-        box-shadow: 0 0 4px 1px rgba(133, 153, 0, 0.71);
-      }
+    .json-view-item-value,
+    .json-view-repeated-item-value {
+      color: rgb(130, 102, 222);
+      fill: rgb(130, 102, 222);
     }
   }
-  .int32, .uint32, .sint32, .fixed32, .sfixed32 {
+  .int, .int32, .uint32, .sint32, .fixed32, .sfixed32 {
     .json-view-item-type,
     .json-view-expand,
     .json-view-points,
-    .json-view-item-input,
-    .json-view-repeated-item-input {
-      color: rgb(35, 173, 219);
-      fill: rgb(35, 173, 219);
-    }
-    .json-view-item-input,
-    .json-view-repeated-item-input {
-      border-color: rgba(35, 173, 219, 0.4);
-      &:focus {
-        border-color: rgb(35, 173, 219);
-        box-shadow: 0 0 4px 1px rgba(35, 173, 219, 0.71);
-      }
+    .json-view-item-value,
+    .json-view-repeated-item-value {
+      color: rgb(35, 174, 221);
+      fill: rgb(35, 174, 221);
     }
   }
   .int64, .uint64, .sint64, .fixed64, .sfixed64 {
     .json-view-item-type,
     .json-view-expand,
     .json-view-points,
-    .json-view-item-input,
-    .json-view-repeated-item-input {
-      color: rgb(78, 134, 222);
-      fill: rgb(78, 134, 222);
+    .json-view-item-value,
+    .json-view-repeated-item-value {
+      color: rgb(133, 153, 0);
+      fill: rgb(133, 153, 0);
     }
-    .json-view-item-input,
-    .json-view-repeated-item-input {
-      border-color: rgba(78, 134, 222, 0.4);
-      &:focus {
-        border-color: rgb(78, 134, 222);
-        box-shadow: 0 0 4px 1px rgba(78, 134, 222, 0.71);
-      }
+  }
+  .null {
+    .json-view-item-type,
+    .json-view-expand,
+    .json-view-points,
+    .json-view-item-value,
+    .json-view-repeated-item-value {
+      color: rgb(230, 50, 192);
+      fill: rgb(230, 50, 192);
     }
   }
 }

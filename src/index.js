@@ -11,11 +11,14 @@ import './index.scss';
 function ProtoJsonView(props) {
     const { src, rootName, collapsed, mode } = props;
     let value;
-    if (mode === 'proto') {
-        value = typeof src === 'string' ?
-            parseJson(src) : src;
+    if (typeof src === 'string') {
+        value = parseJson(src);
     } else {
-        // TODO
+        if (mode === 'proto') {
+            value = src;
+        } else {
+            value = parseJson(JSON.stringify(src));
+        }
     }
     return (
         <Message

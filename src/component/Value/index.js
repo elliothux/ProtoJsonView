@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { types, typesMap, isString } from '../../utils.js';
+import { types, typesMap, isString, isNull, isBool } from '../../utils.js';
 
 import './index.scss';
 
 
 function Value(props) {
-    const {
+    let {
         value, type, className,
     } = props;
-    const displayValue = isString(type) ?
-        `"${value}"` : `${value}`;
+    let displayValue;
+    if (isString(type)) {
+        displayValue = `"${value}"`;
+    } else if (isNull(type)) {
+        displayValue = '';
+    } else if (isBool(type)) {
+        displayValue = value.toString();
+        className += ` ${displayValue}`;
+    } else {
+        displayValue = value.toString();
+    }
     return (
-        <span className={`json-view-input-field ${className}`}>
+        <span className={`json-view-value ${className}`}>
             {displayValue}
         </span>
     );
@@ -25,12 +34,13 @@ Value.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
+        PropTypes.bool
     ]),
     className: PropTypes.string
 };
 Value.defaultProps = {
     type: typesMap.STRING,
-    value: '',
+    value: null,
     className: '',
 };
 

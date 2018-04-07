@@ -54,7 +54,11 @@ function isNumber(type) {
 }
 
 function isNull(type) {
-    return type === 'null';
+    return type === typesMap.NULL;
+}
+
+function isBool(type) {
+    return type === typesMap.BOOLEAN;
 }
 
 function isString(type) {
@@ -63,12 +67,12 @@ function isString(type) {
 }
 
 
-
 export {
     types,
     typesMap,
     preventDefault,
     isNumber,
+    isBool,
     isString,
     isNull
 };
