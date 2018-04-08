@@ -2,8 +2,6 @@
 
 A JsonView component working with ProtoBuf for React
 
-![](https://travis-ci.org/HuQingyang/ProtoJsonView.svg?branch=master)
-
 ## Features
 
 - Parsing JSON string with big number to ProtoBuf schema
