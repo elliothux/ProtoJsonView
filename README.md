@@ -1,24 +1,25 @@
 # ProtoJsonView
 
-A JsonView component working with ProtoBuf for React
+JsonView 组件, 配合 ProtoBuf 食用更佳
 
 ![](https://travis-ci.org/HuQingyang/ProtoJsonView.svg?branch=master)
 
-## Features
+## 特性
 
-- Parsing JSON string with big number to ProtoBuf schema
-- Documentation tips
-- Pretty UI with color schema
+- 支持解析包含超过JS最大范围的数字的 JSON String 到 ProtoBuf Schema
+- 支持字段文档提示
+- 类型高亮
+- 易用的交互与 UI
 
-## Preview
+## 预览
 
 ![Preview](preview.png)
 
-## Install
+## 安装
 
 `npm i -S proto-json-view`
 
-## Example
+## 例子
 
 ```jsx harmony
 import React from 'react';
@@ -46,6 +47,7 @@ render(<App />, container);
 
 ## PropTypes
 
-- **schema: Array** Field infos  
+- **src: String | Array | Object** Field infos  
 - **rootName: String (Optional)** Displayed name of root node  
 - **collapsed: Boolean | Int (Optional)** "True" to collapse all nodes; "False" to expand all nodes, number to expand nodes with the specified nested depth  
+- **mode: "proto" | "json" (Optional)** Use it as ordinary JsonView by passing "json"
