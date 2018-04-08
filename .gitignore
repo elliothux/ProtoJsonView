@@ -68,3 +68,4 @@ typings/
 .idea/
 /.idea/
 /__test__/__snapshots__/
+!/__test__/__snapshots__/
