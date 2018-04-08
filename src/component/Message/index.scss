@@ -3,7 +3,7 @@
 
 
 .json-view {
-  margin: 8px 11px;
+  margin: 4px 11px;
   transition: all ease 300ms;
   height: auto;
   position: relative;
@@ -21,8 +21,8 @@
   .json-view-start, .json-view-end {
     position: relative;
     cursor: pointer;
-    height: 32px;
-    line-height: 32px;
+    height: 28px;
+    line-height: 28px;
     user-select: none;
   }
   .json-view-start {
@@ -67,8 +67,8 @@
   .json-view-items {
     margin-left: 40px;
     .json-view-item {
-      height: 32px;
-      margin: 8px 0;
+      height: 28px;
+      margin: 4px 0;
       font-size: 14px;
       display: flex;
       justify-content: flex-start;
@@ -96,7 +96,7 @@
 }
 
 .json-view.json-view-collapsed {
-  height: 32px;
+  height: 28px;
   border-left: none;
   .json-view-start {
     .json-view-expand {

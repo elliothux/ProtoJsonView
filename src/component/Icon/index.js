@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './index.scss';
 
 const iconTypesMap = {
-  COLLAPSED: 'COLLAPSED'
+  COLLAPSED: 'COLLAPSED',
 };
 
 
@@ -17,6 +17,7 @@ class Icon extends PureComponent {
     render() {
       const { types: iconTypes } = Icon;
       const { type, ...rest } = this.props;
+      /* eslint-disable max-len */
       switch (type) {
         case iconTypes.COLLAPSED:
           return (
@@ -26,10 +27,10 @@ class Icon extends PureComponent {
               />
             </svg>
           );
-          /* eslint-enable max-len */
         default:
           return null;
       }
+      /* eslint-enable max-len */
     }
 }
 

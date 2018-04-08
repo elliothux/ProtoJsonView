@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define("tree-input", ["react"], factory);
+		define("proto-json-view", ["react"], factory);
 	else if(typeof exports === 'object')
-		exports["tree-input"] = factory(require("react"));
+		exports["proto-json-view"] = factory(require("react"));
 	else
-		root["tree-input"] = factory(root["react"]);
+		root["proto-json-view"] = factory(root["react"]);
 })(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -112,7 +112,7 @@ if (process.env.NODE_ENV !== 'production') {
   module.exports = __webpack_require__(18)();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 2 */
@@ -580,81 +580,6 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.formatToJS = exports.format = exports.deepCopy = exports.preventDefault = exports.noop = exports.typesMap = exports.types = undefined;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _format = __webpack_require__(19);
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var noop = function noop() {};
-
-var types = ['double', 'float', 'int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64', 'fixed32', 'fixed64', 'sfixed32', 'sfixed64', 'bool', 'string', 'bytes', 'enum'];
-
-var typesMap = {
-  DOUBLE: 'double',
-  FLOAT: 'float',
-  INT32: 'int32',
-  INT64: 'int64',
-  UINT32: 'uint32',
-  UINT64: 'uint64',
-  SINT32: 'sint32',
-  SINT64: 'sint64',
-  FIXED32: 'fixed32',
-  FIXED64: 'fixed64',
-  SFIXED32: 'sfixed32',
-  SFIXED64: 'sfixed64',
-  BOOL: 'bool',
-  STRING: 'string',
-  BYTES: 'bytes',
-  ENUM: 'enum'
-};
-
-function preventDefault(e) {
-  if (e) {
-    if (e.preventDefault) {
-      e.preventDefault();
-    }
-    if (e.stopPropagation) {
-      e.stopPropagation();
-    }
-    if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) {
-      e.nativeEvent.stopImmediatePropagation();
-    }
-  }
-}
-
-function deepCopy(data) {
-  if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) !== 'object' || data === null) {
-    return data;
-  }
-  return Array.isArray(data) ? [].concat(_toConsumableArray(data)).map(function (i) {
-    return deepCopy(i);
-  }) : Object.keys(data).reduce(function (accu, k) {
-    accu[k] = deepCopy(data[k]);
-    return accu;
-  }, {});
-}
-
-exports.types = types;
-exports.typesMap = typesMap;
-exports.noop = noop;
-exports.preventDefault = preventDefault;
-exports.deepCopy = deepCopy;
-exports.format = _format.format;
-exports.formatToJS = _format.formatToJS;
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -844,7 +769,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -886,7 +811,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -943,10 +868,10 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -965,7 +890,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -975,107 +900,74 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var types = ['int', 'double', 'float', 'int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64', 'fixed32', 'fixed64', 'sfixed32', 'sfixed64', 'boolean', 'string', 'bytes', 'enum', 'null', 'message'];
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var typesMap = {
+  INT: 'int',
+  DOUBLE: 'double',
+  FLOAT: 'float',
+  INT32: 'int32',
+  INT64: 'int64',
+  UINT32: 'uint32',
+  UINT64: 'uint64',
+  SINT32: 'sint32',
+  SINT64: 'sint64',
+  FIXED32: 'fixed32',
+  FIXED64: 'fixed64',
+  SFIXED32: 'sfixed32',
+  SFIXED64: 'sfixed64',
 
-var _react = __webpack_require__(0);
+  BOOLEAN: 'boolean',
+  STRING: 'string',
+  BYTES: 'bytes',
+  ENUM: 'enum',
+  NULL: 'null',
 
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-__webpack_require__(24);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var iconTypesMap = {
-  ADD: 'ADD',
-  REMOVE: 'REMOVE',
-  COLLAPSED: 'COLLAPSED',
-  ARROW: 'ARROW'
+  MESSAGE: 'message'
 };
 
-var Icon = function (_PureComponent) {
-  _inherits(Icon, _PureComponent);
-
-  function Icon() {
-    _classCallCheck(this, Icon);
-
-    return _possibleConstructorReturn(this, (Icon.__proto__ || Object.getPrototypeOf(Icon)).apply(this, arguments));
-  }
-
-  _createClass(Icon, [{
-    key: 'render',
-    value: function render() {
-      var iconTypes = Icon.types;
-
-      var _props = this.props,
-          type = _props.type,
-          rest = _objectWithoutProperties(_props, ['type']);
-
-      switch (type) {
-        case iconTypes.ADD:
-          /* eslint-disable max-len */
-          return _react2.default.createElement(
-            'svg',
-            _extends({}, rest, { viewBox: '0 0 1024 1024', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' }),
-            _react2.default.createElement('path', {
-              d: 'M683.968 534.944H544v139.968a32 32 0 0 1-64 0v-139.968h-139.968a32 32 0 0 1 0-64H480v-139.968a32 32 0 0 1 64 0v139.968h139.968a32 32 0 0 1 0 64M512 128C300.256 128 128 300.288 128 512c0 211.744 172.256 384 384 384s384-172.256 384-384c0-211.712-172.256-384-384-384'
-            })
-          );
-        case iconTypes.REMOVE:
-          return _react2.default.createElement(
-            'svg',
-            _extends({}, rest, { viewBox: '0 0 1024 1024', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' }),
-            _react2.default.createElement('path', {
-              d: 'M645.568 537.6h-256a32 32 0 0 1 0-64h256a32 32 0 0 1 0 64M512 128C300.288 128 128 300.288 128 512c0 211.744 172.288 384 384 384 211.744 0 384-172.256 384-384 0-211.712-172.256-384-384-384'
-            })
-          );
-        case iconTypes.COLLAPSED:
-          return _react2.default.createElement(
-            'svg',
-            _extends({}, rest, { viewBox: '0 0 1024 1024', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' }),
-            _react2.default.createElement('path', {
-              d: 'M755.552 495.36l-384-296.672a31.936 31.936 0 0 0-51.552 25.28v593.504a32 32 0 0 0 51.552 25.28l384-296.704a32 32 0 0 0 0-50.656'
-            })
-          );
-        case iconTypes.ARROW:
-          return _react2.default.createElement(
-            'svg',
-            _extends({}, rest, { viewBox: '0 0 1024 1024', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' }),
-            _react2.default.createElement('path', {
-              d: 'M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z'
-            })
-          );
-        /* eslint-enable max-len */
-        default:
-          return null;
-      }
+function preventDefault(e) {
+  if (e) {
+    if (e.preventDefault) {
+      e.preventDefault();
     }
-  }]);
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    }
+    if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) {
+      e.nativeEvent.stopImmediatePropagation();
+    }
+  }
+}
 
-  return Icon;
-}(_react.PureComponent);
+function isNumber(type) {
+  var valid = ['int', 'double', 'float', 'int32', 'int64', 'uint32', 'uint64', 'sint32', 'sint64', 'fixed32', 'fixed64', 'sfixed32', 'sfixed64'];
+  return valid.includes(type);
+}
 
-Icon.propTypes = {
-  type: _propTypes2.default.oneOf(Object.keys(iconTypesMap)).isRequired
-};
-Icon.types = iconTypesMap;
-exports.default = Icon;
+function isNull(type) {
+  return type === typesMap.NULL;
+}
+
+function isBool(type) {
+  return type === typesMap.BOOLEAN;
+}
+
+function isString(type) {
+  var valid = [typesMap.STRING, typesMap.BYTES];
+  return valid.includes(type);
+}
+
+exports.types = types;
+exports.typesMap = typesMap;
+exports.preventDefault = preventDefault;
+exports.isNumber = isNumber;
+exports.isBool = isBool;
+exports.isString = isString;
+exports.isNull = isNull;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1089,7 +981,7 @@ exports.default = Icon;
 
 
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(5);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1141,10 +1033,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1164,19 +1056,11 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Input = __webpack_require__(12);
+var _Value = __webpack_require__(11);
 
-var _Input2 = _interopRequireDefault(_Input);
+var _Value2 = _interopRequireDefault(_Value);
 
-var _Enum = __webpack_require__(23);
-
-var _Enum2 = _interopRequireDefault(_Enum);
-
-var _Boolean = __webpack_require__(28);
-
-var _Boolean2 = _interopRequireDefault(_Boolean);
-
-var _Repeated = __webpack_require__(31);
+var _Repeated = __webpack_require__(23);
 
 var _Repeated2 = _interopRequireDefault(_Repeated);
 
@@ -1184,13 +1068,13 @@ var _Tooltip = __webpack_require__(13);
 
 var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
-var _Icon = __webpack_require__(9);
+var _Icon = __webpack_require__(12);
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _utils = __webpack_require__(4);
+__webpack_require__(30);
 
-__webpack_require__(36);
+var _utils = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1235,26 +1119,25 @@ var Message = function (_Component) {
           length = _props.value.length,
           name = _props.name,
           nestedDepth = _props.nestedDepth,
-          onRemove = _props.onRemove,
           documentation = _props.documentation;
 
       var isRoot = nestedDepth === 1;
       return _react2.default.createElement(
         'div',
         {
-          className: 'tree-input' + (collapsed ? ' tree-input-collapsed' : '') + (isRoot ? ' tree-input-root' : '') + ' message',
+          className: 'json-view' + (collapsed ? ' json-view-collapsed' : '') + (isRoot ? ' json-view-root' : '') + ' message',
           key: name
         },
         _react2.default.createElement(
           'div',
           {
-            className: 'tree-input-start',
+            className: 'json-view-start',
             onClick: this.handleToggleCollapsed
           },
-          _react2.default.createElement(_Icon2.default, { type: 'COLLAPSED', className: 'tree-input-expand' }),
+          _react2.default.createElement(_Icon2.default, { type: 'COLLAPSED', className: 'json-view-expand' }),
           _react2.default.createElement(
             'div',
-            { className: 'tree-input-name' },
+            { className: 'json-view-name' },
             _react2.default.createElement(
               'span',
               null,
@@ -1265,54 +1148,48 @@ var Message = function (_Component) {
           !isRoot ? _react2.default.createElement(
             'span',
             {
-              className: 'tree-input-item-type'
+              className: 'json-view-item-type'
             },
             ' message'
           ) : null,
           _react2.default.createElement(
             'span',
-            { className: 'tree-input-tag' },
+            { className: 'json-view-tag' },
             '{'
           ),
           _react2.default.createElement(
             'span',
-            { className: collapsed ? '' : 'tree-input-hide' },
+            { className: collapsed ? '' : 'json-view-hide' },
             length > 0 ? _react2.default.createElement(
               'span',
-              { className: 'tree-input-points' },
+              { className: 'json-view-points' },
               '...'
             ) : null,
             _react2.default.createElement(
               'span',
-              { className: 'tree-input-tag' },
+              { className: 'json-view-tag' },
               '}'
             )
           ),
           length === 0 ? _react2.default.createElement(
             'span',
-            { className: 'tree-input-count-empty' },
+            { className: 'json-view-count-empty' },
             'Empty'
           ) : _react2.default.createElement(
             'span',
-            { className: 'tree-input-count' },
+            { className: 'json-view-count' },
             length,
             ' Items'
-          ),
-          onRemove !== _utils.noop ? _react2.default.createElement(_Icon2.default, {
-            type: 'REMOVE',
-
-            className: 'tree-input-remove icon-remove',
-            onClick: onRemove
-          }) : null
+          )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'tree-input-items' },
+          { className: 'json-view-items' },
           value.map(this.renderNode)
         ),
         _react2.default.createElement(
           'div',
-          { className: 'tree-input-end' },
+          { className: 'json-view-end' },
           _react2.default.createElement(
             'span',
             { onClick: this.handleToggleCollapsed },
@@ -1331,16 +1208,10 @@ Message.propTypes = {
   name: _propTypes2.default.string.isRequired,
   collapsed: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.bool]).isRequired,
   nestedDepth: _propTypes2.default.number.isRequired,
-  documentation: _propTypes2.default.string,
-  onChange: _propTypes2.default.func,
-  onRemove: _propTypes2.default.func
-  // warnEmpty: PropTypes.bool
+  documentation: _propTypes2.default.string
 };
 Message.defaultProps = {
-  documentation: '',
-  onChange: _utils.noop,
-  onRemove: _utils.noop
-  // warnEmpty: false,
+  documentation: ''
 };
 
 var _initialiseProps = function _initialiseProps() {
@@ -1355,18 +1226,7 @@ var _initialiseProps = function _initialiseProps() {
     });
   };
 
-  this.generateOnChange = function (node) {
-    return function (e, value) {
-      var newValue = _this2.props.value;
-
-      newValue.find(function (i) {
-        return i === node;
-      }).value = value;
-      _this2.props.onChange(e, newValue);
-    };
-  };
-
-  this.renderInput = function (node) {
+  this.renderValue = function (node) {
     var name = node.name,
         type = node.type,
         value = node.value,
@@ -1375,15 +1235,15 @@ var _initialiseProps = function _initialiseProps() {
     return _react2.default.createElement(
       'div',
       {
-        className: 'tree-input-item ' + type,
+        className: 'json-view-item ' + type,
         key: name
       },
       _react2.default.createElement(
         'div',
-        { className: 'tree-input-item-info' },
+        { className: 'json-view-item-info' },
         _react2.default.createElement(
           'div',
-          { className: 'tree-input-item-name' },
+          { className: 'json-view-item-name' },
           _react2.default.createElement(
             'span',
             null,
@@ -1393,105 +1253,24 @@ var _initialiseProps = function _initialiseProps() {
         ),
         _react2.default.createElement(
           'span',
-          { className: 'tree-input-item-type' },
+          { className: 'json-view-item-type' },
           ' ',
           type
         )
       ),
-      _react2.default.createElement(_Input2.default, {
-        className: 'tree-input-item-input',
+      _react2.default.createElement(_Value2.default, {
+        className: 'json-view-item-value',
         name: name,
         type: type,
         value: value,
-        documentation: documentation,
-        onChange: _this2.generateOnChange(node)
-      })
-    );
-  };
-
-  this.renderEnum = function (node) {
-    var name = node.name,
-        fieldInfo = node.fieldInfo,
-        value = node.value,
-        documentation = node.documentation;
-
-    return _react2.default.createElement(
-      'div',
-      {
-        className: 'tree-input-item enum',
-        key: name
-      },
-      _react2.default.createElement(
-        'div',
-        { className: 'tree-input-item-info' },
-        _react2.default.createElement(
-          'div',
-          { className: 'tree-input-item-name' },
-          _react2.default.createElement(
-            'span',
-            null,
-            '"' + name + '":'
-          ),
-          _react2.default.createElement(_Tooltip2.default, { text: documentation })
-        ),
-        _react2.default.createElement(
-          'span',
-          { className: 'tree-input-item-type' },
-          ' enum'
-        )
-      ),
-      _react2.default.createElement(_Enum2.default, {
-        name: name,
-        value: value,
-        fieldInfo: fieldInfo,
-        documentation: documentation,
-        onChange: _this2.generateOnChange(node)
-      })
-    );
-  };
-
-  this.renderBoolean = function (node) {
-    var name = node.name,
-        value = node.value,
-        documentation = node.documentation;
-
-    return _react2.default.createElement(
-      'div',
-      {
-        className: 'tree-input-item boolean',
-        key: name
-      },
-      _react2.default.createElement(
-        'div',
-        { className: 'tree-input-item-info' },
-        _react2.default.createElement(
-          'div',
-          { className: 'tree-input-item-name' },
-          _react2.default.createElement(
-            'span',
-            null,
-            '"' + name + '":'
-          ),
-          _react2.default.createElement(_Tooltip2.default, { text: documentation })
-        ),
-        _react2.default.createElement(
-          'span',
-          { className: 'tree-input-item-type' },
-          ' boolean'
-        )
-      ),
-      _react2.default.createElement(_Boolean2.default, {
-        name: name,
-        value: value,
-        documentation: documentation,
-        onChange: _this2.generateOnChange(node)
+        documentation: documentation
       })
     );
   };
 
   this.renderMessage = function (node) {
-    var fieldInfo = node.fieldInfo,
-        name = node.name,
+    var name = node.name,
+        value = node.value,
         documentation = node.documentation;
     var _props2 = _this2.props,
         nestedDepth = _props2.nestedDepth,
@@ -1499,19 +1278,17 @@ var _initialiseProps = function _initialiseProps() {
 
     return _react2.default.createElement(Message, {
       key: name,
-      value: fieldInfo,
+      value: value,
       name: name,
       nestedDepth: nestedDepth + 1,
       collapsed: collapsed,
-      documentation: documentation,
-      onChange: _this2.generateOnChange(node)
+      documentation: documentation
     });
   };
 
   this.renderRepeated = function (node) {
     var name = node.name,
         type = node.type,
-        fieldInfo = node.fieldInfo,
         value = node.value,
         documentation = node.documentation;
     var _props3 = _this2.props,
@@ -1522,11 +1299,10 @@ var _initialiseProps = function _initialiseProps() {
       key: name,
       value: value || [],
       name: name,
-      typeOrFieldInfo: fieldInfo || type,
+      type: type,
       collapsed: collapsed,
       nestedDepth: nestedDepth + 1,
-      documentation: documentation,
-      onChange: _this2.generateOnChange(node)
+      documentation: documentation
     });
   };
 
@@ -1536,21 +1312,75 @@ var _initialiseProps = function _initialiseProps() {
 
     if (label === 'REPEATED') {
       return _this2.renderRepeated(node);
+    } else if (type === _utils.typesMap.MESSAGE) {
+      return _this2.renderMessage(node);
     }
-    switch (type) {
-      case 'message':
-        return _this2.renderMessage(node);
-      case 'enum':
-        return _this2.renderEnum(node);
-      case 'boolean':
-        return _this2.renderBoolean(node);
-      default:
-        return _this2.renderInput(node);
-    }
+    return _this2.renderValue(node);
   };
 };
 
 exports.default = Message;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _utils = __webpack_require__(8);
+
+__webpack_require__(20);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Value(props) {
+  var value = props.value,
+      type = props.type,
+      className = props.className;
+
+  var displayValue = void 0;
+  if ((0, _utils.isString)(type)) {
+    displayValue = '"' + value + '"';
+  } else if ((0, _utils.isNull)(type)) {
+    displayValue = '';
+  } else if ((0, _utils.isBool)(type)) {
+    displayValue = value.toString();
+    className += ' ' + displayValue;
+  } else {
+    displayValue = value.toString();
+  }
+  return _react2.default.createElement(
+    'span',
+    { className: 'json-view-value ' + className },
+    displayValue
+  );
+}
+
+Value.propTypes = {
+  type: _propTypes2.default.oneOf(_utils.types),
+  value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number, _propTypes2.default.bool]),
+  className: _propTypes2.default.string
+};
+Value.defaultProps = {
+  type: _utils.typesMap.STRING,
+  value: null,
+  className: ''
+};
+
+exports.default = Value;
 
 /***/ }),
 /* 12 */
@@ -1575,11 +1405,11 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _utils = __webpack_require__(4);
-
-__webpack_require__(20);
+__webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1587,141 +1417,54 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Input = function (_Component) {
-  _inherits(Input, _Component);
+var iconTypesMap = {
+  COLLAPSED: 'COLLAPSED'
+};
 
-  function Input() {
-    var _ref;
+var Icon = function (_PureComponent) {
+  _inherits(Icon, _PureComponent);
 
-    var _temp, _this, _ret;
+  function Icon() {
+    _classCallCheck(this, Icon);
 
-    _classCallCheck(this, Input);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Input.__proto__ || Object.getPrototypeOf(Input)).call.apply(_ref, [this].concat(args))), _this), _this.onChange = function (e) {
-      var _this$props = _this.props,
-          onChange = _this$props.onChange,
-          preValue = _this$props.value;
-      var value = e.target.value;
-
-      var formated = _this.format(value);
-      if (formated === preValue) {
-        return;
-      }
-      var event = _extends({}, e, { value: formated, component: _this });
-      onChange(event, formated, value);
-    }, _this.format = function (value) {
-      var _this2 = _this,
-          isNumber = _this2.isNumber,
-          hasPoint = _this2.hasPoint,
-          hasNegative = _this2.hasNegative;
-
-      if (!isNumber) {
-        return value;
-      }
-      var match = value.match(/[\d.-]/g);
-      if (!match) {
-        return '';
-      }
-      value = match.join('');
-
-      if (hasPoint) {
-        var pointMatch = value.match(/-?\d+\.?\d*/);
-        value = pointMatch ? pointMatch[0] : '';
-      } else {
-        value = value.replace(/\./g, '');
-      }
-
-      if (hasNegative) {
-        var isNegative = value[0] === '-';
-        value = '' + (isNegative ? '-' : '') + value.replace(/-/g, '');
-      } else {
-        value = value.replace(/-/g, '');
-      }
-      return value;
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    return _possibleConstructorReturn(this, (Icon.__proto__ || Object.getPrototypeOf(Icon)).apply(this, arguments));
   }
 
-  _createClass(Input, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      var _props = this.props,
-          value = _props.value,
-          name = _props.name,
-          type = _props.type,
-          className = _props.className;
-      var nextValue = nextProps.value,
-          nextName = nextProps.name,
-          nextType = nextProps.type,
-          nextClassName = nextProps.className;
-
-      return value !== nextValue || name !== nextName || type !== nextType || className !== nextClassName;
-    }
-  }, {
+  _createClass(Icon, [{
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          value = _props2.value,
-          name = _props2.name,
-          type = _props2.type,
-          className = _props2.className;
+      var iconTypes = Icon.types;
 
-      return _react2.default.createElement('input', {
-        type: 'text',
-        className: 'tree-input-input-field ' + className,
-        value: value,
-        placeholder: name + ': ' + type,
-        onChange: this.onChange
-      });
-    }
-  }, {
-    key: 'isNumber',
-    get: function get() {
-      var type = this.props.type;
+      var _props = this.props,
+          type = _props.type,
+          rest = _objectWithoutProperties(_props, ['type']);
+      /* eslint-disable max-len */
 
-      var invalid = [_utils.typesMap.BOOL, _utils.typesMap.STRING, _utils.typesMap.BYTES, _utils.typesMap.ENUM];
-      return !invalid.includes(type);
-    }
-  }, {
-    key: 'hasPoint',
-    get: function get() {
-      var type = this.props.type;
 
-      var valid = [_utils.typesMap.DOUBLE, _utils.typesMap.FLOAT, _utils.typesMap];
-      return valid.includes(type);
-    }
-  }, {
-    key: 'hasNegative',
-    get: function get() {
-      var type = this.props.type;
-
-      var invalid = [_utils.typesMap.UINT32, _utils.typesMap.UINT64];
-      return !invalid.includes(type);
+      switch (type) {
+        case iconTypes.COLLAPSED:
+          return _react2.default.createElement(
+            'svg',
+            _extends({}, rest, { viewBox: '0 0 1024 1024', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' }),
+            _react2.default.createElement('path', {
+              d: 'M755.552 495.36l-384-296.672a31.936 31.936 0 0 0-51.552 25.28v593.504a32 32 0 0 0 51.552 25.28l384-296.704a32 32 0 0 0 0-50.656'
+            })
+          );
+        default:
+          return null;
+      }
+      /* eslint-enable max-len */
     }
   }]);
 
-  return Input;
-}(_react.Component);
+  return Icon;
+}(_react.PureComponent);
 
-Input.propTypes = {
-  name: _propTypes2.default.string.isRequired,
-  type: _propTypes2.default.oneOf(_utils.types),
-  onChange: _propTypes2.default.func,
-  // onPressEnter: PropTypes.func,
-  value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
-  className: _propTypes2.default.string
+Icon.propTypes = {
+  type: _propTypes2.default.oneOf(Object.keys(iconTypesMap)).isRequired
 };
-Input.defaultProps = {
-  type: _utils.typesMap.STRING,
-  onChange: _utils.noop,
-  // onPressEnter: noop,
-  value: '',
-  className: ''
-};
-exports.default = Input;
+Icon.types = iconTypesMap;
+exports.default = Icon;
 
 /***/ }),
 /* 13 */
@@ -1742,7 +1485,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-__webpack_require__(34);
+__webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1752,14 +1495,14 @@ function Tooltip(props) {
   return text.trim() ? _react2.default.createElement(
     'div',
     {
-      className: 'tree-input-tooltip'
+      className: 'json-view-tooltip'
     },
     _react2.default.createElement(
       'span',
       null,
       text
     ),
-    _react2.default.createElement('div', { className: 'tree-input-tooltip-arrow' })
+    _react2.default.createElement('div', { className: 'json-view-tooltip-arrow' })
   ) : null;
 }
 
@@ -1783,9 +1526,6 @@ exports.default = Tooltip;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formatToJS = exports.format = exports.TreeInput = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
@@ -1795,88 +1535,54 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Message = __webpack_require__(11);
+var _bigJsonParser = __webpack_require__(19);
+
+var _bigJsonParser2 = _interopRequireDefault(_bigJsonParser);
+
+var _Message = __webpack_require__(10);
 
 var _Message2 = _interopRequireDefault(_Message);
 
-var _utils = __webpack_require__(4);
-
-__webpack_require__(38);
+__webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function ProtoJsonView(props) {
+  var src = props.src,
+      rootName = props.rootName,
+      collapsed = props.collapsed,
+      mode = props.mode;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TreeInput = function (_Component) {
-  _inherits(TreeInput, _Component);
-
-  function TreeInput() {
-    var _ref;
-
-    _classCallCheck(this, TreeInput);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    var _this = _possibleConstructorReturn(this, (_ref = TreeInput.__proto__ || Object.getPrototypeOf(TreeInput)).call.apply(_ref, [this].concat(args)));
-
-    _this.state = { value: [] };
-
-    _this.onChange = function (e, value) {
-      _this.setState({ value: value });
-      _this.props.onChange(e, value);
-    };
-
-    var schema = _this.props.schema;
-
-    _this.state = { value: schema };
-    return _this;
+  var value = void 0;
+  if (typeof src === 'string') {
+    value = (0, _bigJsonParser2.default)(src);
+  } else if (mode === 'proto') {
+    value = src;
+  } else {
+    value = (0, _bigJsonParser2.default)(JSON.stringify(src));
   }
+  return _react2.default.createElement(_Message2.default, {
+    value: value,
+    name: rootName,
+    collapsed: collapsed,
+    nestedDepth: 1
+  });
+}
 
-  _createClass(TreeInput, [{
-    key: 'render',
-    value: function render() {
-      var value = this.state.value;
-      var _props = this.props,
-          rootName = _props.rootName,
-          collapsed = _props.collapsed;
-
-      return _react2.default.createElement(_Message2.default, {
-        value: value,
-        collapsed: collapsed,
-        nestedDepth: 1,
-        name: rootName,
-        onChange: this.onChange
-      });
-    }
-  }]);
-
-  return TreeInput;
-}(_react.Component);
-
-TreeInput.propTypes = {
-  schema: _propTypes2.default.array.isRequired,
+ProtoJsonView.propTypes = {
+  src: _propTypes2.default.PropTypes.oneOfType([_propTypes2.default.string, _propTypes2.default.object, _propTypes2.default.array]).isRequired,
   rootName: _propTypes2.default.string,
   collapsed: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.bool]),
-  onChange: _propTypes2.default.func,
-  filterEmpty: _propTypes2.default.bool
-  // warnEmpty: PropTypes.bool,
+  mode: _propTypes2.default.oneOf(['proto', 'json'])
 };
-TreeInput.defaultProps = {
+
+ProtoJsonView.defaultProps = {
   rootName: 'Root',
   collapsed: true,
-  onChange: _utils.noop,
-  filterEmpty: true
-  // warnEmpty: false,
+  mode: 'proto'
 };
-exports.TreeInput = TreeInput;
-exports.format = _utils.format;
-exports.formatToJS = _utils.formatToJS;
+
+exports.default = ProtoJsonView;
 
 /***/ }),
 /* 15 */
@@ -1892,12 +1598,12 @@ exports.formatToJS = _utils.formatToJS;
 
 
 
-var emptyFunction = __webpack_require__(6);
-var invariant = __webpack_require__(7);
-var warning = __webpack_require__(10);
+var emptyFunction = __webpack_require__(5);
+var invariant = __webpack_require__(6);
+var warning = __webpack_require__(9);
 var assign = __webpack_require__(16);
 
-var ReactPropTypesSecret = __webpack_require__(8);
+var ReactPropTypesSecret = __webpack_require__(7);
 var checkPropTypes = __webpack_require__(17);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -2426,7 +2132,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 16 */
@@ -2540,9 +2246,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(7);
-  var warning = __webpack_require__(10);
-  var ReactPropTypesSecret = __webpack_require__(8);
+  var invariant = __webpack_require__(6);
+  var warning = __webpack_require__(9);
+  var ReactPropTypesSecret = __webpack_require__(7);
   var loggedTypeFailures = {};
 }
 
@@ -2590,7 +2296,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 module.exports = checkPropTypes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 18 */
@@ -2606,9 +2312,9 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(6);
-var invariant = __webpack_require__(7);
-var ReactPropTypesSecret = __webpack_require__(8);
+var emptyFunction = __webpack_require__(5);
+var invariant = __webpack_require__(6);
+var ReactPropTypesSecret = __webpack_require__(7);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -2661,91 +2367,462 @@ module.exports = function() {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("big-json-parser", [], factory);
+	else if(typeof exports === 'object')
+		exports["big-json-parser"] = factory();
+	else
+		root["big-json-parser"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.formatToJS = exports.format = undefined;
 
-var _ = __webpack_require__(4);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var EMPTY = {};
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function format(rawValue, filterEmpty) {
-    var formated = rawValue.map(function (i) {
-        var name = i.name,
-            type = i.type,
-            label = i.label,
-            value = i.value,
-            fieldInfo = i.fieldInfo;
+var at = void 0; // The index of the current character
+var ch = void 0; // The current character
+var text = void 0;
 
-        var v = void 0;
+var escapee = {
+    "\"": "\"",
+    "\\": "\\",
+    "/": "/",
+    b: "\b",
+    f: "\f",
+    n: "\n",
+    r: "\r",
+    t: "\t"
+};
+var typesMap = {
+    STRING: 'string',
+    FLOAT: 'float',
+    INT: 'int',
+    BOOLEAN: 'boolean',
+    NULL: 'null',
+    MESSAGE: 'message'
+};
+var labelsMap = {
+    REPEATED: 'REPEATED',
+    OPTIONAL: 'OPTIONAL'
+};
 
-        if (label === 'REPEATED') {
-            if (!value || value.length === 0) {
-                return EMPTY;
+var error = function error(m) {
+    throw {
+        name: "SyntaxError",
+        message: m,
+        at: at,
+        text: text
+    };
+};
+
+var next = function next(c) {
+    if (c && c !== ch) {
+        error("Expected '" + c + "' instead of '" + ch + "'");
+    }
+    ch = text.charAt(at);
+    at += 1;
+    return ch;
+};
+
+var number = function number() {
+    var value = void 0;
+    var string = "";
+
+    if (ch === "-") {
+        string = "-";
+        next("-");
+    }
+    while (ch >= "0" && ch <= "9") {
+        string += ch;
+        next();
+    }
+    if (ch === ".") {
+        string += ".";
+        while (next() && ch >= "0" && ch <= "9") {
+            string += ch;
+        }
+    }
+    if (ch === "e" || ch === "E") {
+        string += ch;
+        next();
+        if (ch === "-" || ch === "+") {
+            string += ch;
+            next();
+        }
+        while (ch >= "0" && ch <= "9") {
+            string += ch;
+            next();
+        }
+    }
+    value = string;
+    if (!isFinite(+value)) {
+        error("Bad number");
+    } else {
+        return {
+            type: ("" + value).indexOf('.') > 0 ? typesMap.FLOAT : typesMap.INT,
+            value: "" + value,
+            label: labelsMap.OPTIONAL
+        };
+    }
+};
+
+var string = function string() {
+    var hex = void 0;
+    var i = void 0;
+    var value = "";
+    var uffff = void 0;
+
+    if (ch === "\"") {
+        while (next()) {
+            if (ch === "\"") {
+                next();
+                return {
+                    type: typesMap.STRING,
+                    label: labelsMap.OPTIONAL,
+                    value: value
+                };
             }
-            v = formatRepeated(value, type === 'message' ? fieldInfo : type, filterEmpty);
-            if (v === '[]' && filterEmpty) {
-                return EMPTY;
-            }
-        } else if (type === 'message') {
-            v = format(fieldInfo, filterEmpty);
-            if (v === '{}' && filterEmpty) {
-                return EMPTY;
-            }
-        } else {
-            if (filterEmpty && [undefined, null, ''].includes(value)) {
-                return EMPTY;
-            }
-            if (value === undefined) {
-                v = 'null';
+            if (ch === "\\") {
+                next();
+                if (ch === "u") {
+                    uffff = 0;
+                    for (i = 0; i < 4; i += 1) {
+                        hex = parseInt(next(), 16);
+                        if (!isFinite(hex)) {
+                            break;
+                        }
+                        uffff = uffff * 16 + hex;
+                    }
+                    value += String.fromCharCode(uffff);
+                } else if (typeof escapee[ch] === "string") {
+                    value += escapee[ch];
+                } else {
+                    break;
+                }
             } else {
-                v = formatSingle(value, type);
+                value += ch;
             }
         }
-        return '"' + name + '":' + v;
-    }).filter(function (i) {
-        return i !== EMPTY;
-    }).join(',');
-    return '{' + formated + '}';
-}
-
-function formatRepeated(value, typeOrFieldInfo, filterEmpty) {
-    if (typeof typeOrFieldInfo === 'string') {
-        value = value.map(function (v) {
-            return formatSingle(v, typeOrFieldInfo);
-        }).filter(function (v) {
-            return !!v;
-        }).join(',');
-    } else {
-        value = value.map(function (v) {
-            return format(v, filterEmpty);
-        }).filter(function (v) {
-            return v !== '{}';
-        }).join(',');
     }
-    return '[' + value + ']';
-}
+    error("Bad string");
+};
 
-function formatSingle(value, type) {
-    if ([_.typesMap.BYTES, _.typesMap.STRING].includes(type)) {
-        return '"' + value + '"';
-    } else if (type === _.typesMap.ENUM) {
-        return typeof value === 'string' ? '"' + value + '"' : '' + value;
+var keyString = function keyString() {
+    var hex = void 0;
+    var i = void 0;
+    var value = "";
+    var uffff = void 0;
+
+    if (ch === "\"") {
+        while (next()) {
+            if (ch === "\"") {
+                next();
+                return value;
+            }
+            if (ch === "\\") {
+                next();
+                if (ch === "u") {
+                    uffff = 0;
+                    for (i = 0; i < 4; i += 1) {
+                        hex = parseInt(next(), 16);
+                        if (!isFinite(hex)) {
+                            break;
+                        }
+                        uffff = uffff * 16 + hex;
+                    }
+                    value += String.fromCharCode(uffff);
+                } else if (typeof escapee[ch] === "string") {
+                    value += escapee[ch];
+                } else {
+                    break;
+                }
+            } else {
+                value += ch;
+            }
+        }
     }
-    return '' + value;
+    error("Bad string");
+};
+
+var white = function white() {
+    while (ch && ch <= " ") {
+        next();
+    }
+};
+
+var word = function word() {
+    switch (ch) {
+        case "t":
+            next("t");
+            next("r");
+            next("u");
+            next("e");
+            return {
+                type: typesMap.BOOLEAN,
+                label: labelsMap.OPTIONAL,
+                value: true
+            };
+        case "f":
+            next("f");
+            next("a");
+            next("l");
+            next("s");
+            next("e");
+            return {
+                type: typesMap.BOOLEAN,
+                label: labelsMap.OPTIONAL,
+                value: false
+            };
+        case "n":
+            next("n");
+            next("u");
+            next("l");
+            next("l");
+            return {
+                type: typesMap.NULL,
+                label: labelsMap.OPTIONAL,
+                value: null
+            };
+    }
+    error("Unexpected '" + ch + "'");
+};
+
+var value = void 0;
+
+var array = function array() {
+    var arr = [];
+    if (ch === "[") {
+        next("[");
+        white();
+        if (ch === "]") {
+            next("]");
+            return {
+                type: null,
+                label: labelsMap.REPEATED,
+                value: arr
+            };
+        }
+        while (ch) {
+            arr.push(value());
+            white();
+            if (ch === "]") {
+                next("]");
+                return {
+                    type: arr[0].type,
+                    label: labelsMap.REPEATED,
+                    value: arr
+                };
+            }
+            next(",");
+            white();
+        }
+    }
+    error("Bad array");
+};
+
+var object = function object() {
+    var key = void 0;
+    var obj = [];
+
+    if (ch === "{") {
+        next("{");
+        white();
+        if (ch === "}") {
+            next("}");
+            return {
+                type: typesMap.MESSAGE,
+                label: labelsMap.OPTIONAL,
+                value: obj
+            };
+        }
+        while (ch) {
+            key = keyString();
+            white();
+            next(":");
+            if (Object.hasOwnProperty.call(obj, key)) {
+                error("Duplicate key '" + key + "'");
+            }
+            obj.push(_extends({ name: key }, value()));
+            white();
+            if (ch === "}") {
+                next("}");
+                return {
+                    type: typesMap.MESSAGE,
+                    label: labelsMap.OPTIONAL,
+                    value: obj
+                };
+            }
+            next(",");
+            white();
+        }
+    }
+    error("Bad object");
+};
+
+value = function value() {
+    white();
+    switch (ch) {
+        case "{":
+            return object();
+        case "[":
+            return array();
+        case "\"":
+            return string();
+        case "-":
+            return number();
+        default:
+            return ch >= "0" && ch <= "9" ? number() : word();
+    }
+};
+
+function parse(source, reviver) {
+    var result = void 0;
+
+    text = source;
+    at = 0;
+    ch = " ";
+    result = value();
+    white();
+    if (ch) {
+        error("Syntax error");
+    }
+
+    var res = typeof reviver === "function" ? function walk(holder, key) {
+        var k = void 0;
+        var v = void 0;
+        var val = holder[key];
+        if (val && (typeof val === "undefined" ? "undefined" : _typeof(val)) === "object") {
+            for (k in val) {
+                if (Object.prototype.hasOwnProperty.call(val, k)) {
+                    v = walk(val, k);
+                    if (v !== undefined) {
+                        val[k] = v;
+                    } else {
+                        delete val[k];
+                    }
+                }
+            }
+        }
+        return reviver.call(holder, key, val);
+    }({ "": result }, "") : result;
+    return res.value || res;
 }
 
-function formatToJS(rawValue, filterEmpty) {
-    var formated = format(rawValue, filterEmpty);
-    return JSON.parse(formated);
-}
+// export default parse;
+exports.default = parse;
 
-exports.format = format;
-exports.formatToJS = formatToJS;
+if (module) module.exports = parse;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ })
+/******/ ]);
+});
 
 /***/ }),
 /* 20 */
@@ -2806,7 +2883,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".tree-input-input-field {\n  font-family: monospace;\n  font-size: 14px;\n  background-color: white; }\n", ""]);
+exports.push([module.i, ".json-view-value {\n  font-family: monospace;\n  font-size: 15px; }\n", ""]);
 
 // exports
 
@@ -2917,10 +2994,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -2931,13 +3004,25 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Icon = __webpack_require__(9);
+var _Value = __webpack_require__(11);
+
+var _Value2 = _interopRequireDefault(_Value);
+
+var _Message = __webpack_require__(10);
+
+var _Message2 = _interopRequireDefault(_Message);
+
+var _Icon = __webpack_require__(12);
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _utils = __webpack_require__(4);
+var _utils = __webpack_require__(8);
 
 __webpack_require__(26);
+
+var _Tooltip = __webpack_require__(13);
+
+var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2947,134 +3032,202 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Enum = function (_PureComponent) {
-  _inherits(Enum, _PureComponent);
+var Repeated = function (_Component) {
+  _inherits(Repeated, _Component);
 
-  function Enum() {
+  function Repeated() {
     var _ref;
 
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Enum);
+    _classCallCheck(this, Repeated);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Enum.__proto__ || Object.getPrototypeOf(Enum)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      expand: false
-    }, _this.onChange = function (e, value) {
-      var onChange = _this.props.onChange;
+    var _this = _possibleConstructorReturn(this, (_ref = Repeated.__proto__ || Object.getPrototypeOf(Repeated)).call.apply(_ref, [this].concat(args)));
 
-      var event = _extends({}, e, { value: value, component: _this });
-      onChange(event, [value], [value]);
-    }, _this.handleToggleExpand = function (expand) {
-      if (typeof expand === 'boolean') {
-        _this.setState({ expand: expand });
-      } else {
-        _this.setState({ expand: !_this.state.expand });
-      }
-    }, _this.handleClick = function (e) {
-      (0, _utils.preventDefault)(e);
-      _this.handleToggleExpand();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    _initialiseProps.call(_this);
+
+    var _this$props = _this.props,
+        nestedDepth = _this$props.nestedDepth,
+        collapsed = _this$props.collapsed;
+
+    _this.state = {
+      collapsed: typeof collapsed === 'number' ? nestedDepth >= collapsed : !!collapsed
+    };
+    return _this;
   }
 
-  _createClass(Enum, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.unexpand = this.handleToggleExpand.bind(this, false);
-      window.addEventListener('click', this.unexpand);
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      window.removeEventListener('click', this.unexpand);
-    }
-  }, {
+  _createClass(Repeated, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
+      var collapsed = this.state.collapsed;
       var _props = this.props,
           value = _props.value,
+          length = _props.value.length,
           name = _props.name,
-          className = _props.className,
-          fieldInfo = _props.fieldInfo;
-      var length = fieldInfo.length;
-      var expand = this.state.expand;
+          documentation = _props.documentation,
+          type = _props.type;
 
-      var _value = _slicedToArray(value, 1),
-          valueName = _value[0].name;
+      var isEmpty = length === 0;
 
       return _react2.default.createElement(
         'div',
         {
-          key: name,
-          className: 'tree-input-item-enum ' + className + (expand ? ' active' : ''),
-          onClick: this.handleClick,
-          style: { zIndex: expand ? 99 : 3 }
+          className: 'json-view-repeated json-view' + (collapsed ? ' json-view-collapsed' : '') + ' ' + type,
+          key: name
         },
         _react2.default.createElement(
           'div',
-          { className: 'tree-input-item-enum-value' },
-          valueName ? _react2.default.createElement(
+          {
+            className: 'json-view-start',
+            onClick: this.handleToggleCollapsed
+          },
+          _react2.default.createElement(_Icon2.default, { type: 'COLLAPSED', className: 'json-view-expand' }),
+          _react2.default.createElement(
+            'div',
+            { className: 'json-view-name' },
+            _react2.default.createElement(
+              'span',
+              null,
+              '"' + name + '": '
+            ),
+            _react2.default.createElement(_Tooltip2.default, { text: documentation })
+          ),
+          _react2.default.createElement(
             'span',
-            null,
-            valueName
+            { className: 'json-view-item-type' },
+            ' ',
+            type,
+            '[]'
+          ),
+          _react2.default.createElement(
+            'span',
+            { className: 'json-view-tag' },
+            '['
+          ),
+          _react2.default.createElement(
+            'span',
+            { className: collapsed ? '' : 'json-view-hide' },
+            _react2.default.createElement(
+              'span',
+              { className: 'json-view-points' + (isEmpty ? ' json-view-hide' : '') },
+              '...'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'json-view-tag' },
+              ']'
+            )
+          ),
+          isEmpty ? _react2.default.createElement(
+            'span',
+            { className: 'json-view-count-empty' },
+            'Empty'
           ) : _react2.default.createElement(
             'span',
-            { className: 'tree-input-place-holder' },
-            name,
-            ': enum'
-          ),
-          _react2.default.createElement(_Icon2.default, { type: _Icon2.default.types.ARROW, className: 'tree-input-item-expand-icon' })
+            { className: 'json-view-count' },
+            length,
+            ' Items'
+          )
         ),
         _react2.default.createElement(
           'div',
-          {
-            className: 'tree-input-enum-options',
-            style: {
-              height: expand ? length * 36 + 'px' : 0,
-              opacity: expand ? 1 : 0
-            }
-          },
-          fieldInfo.map(function (i) {
-            return _react2.default.createElement(
-              'div',
-              {
-                key: i.name,
-                className: 'tree-input-enum-option' + (i.name === valueName ? ' active' : ''),
-                onClick: function onClick(e) {
-                  return _this2.onChange(e, i);
-                }
-              },
-              i.name
-            );
-          })
+          { className: 'json-view-items' },
+          value.map(this.renderNode)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'json-view-end' },
+          _react2.default.createElement(
+            'span',
+            { onClick: this.handleToggleCollapsed },
+            ']'
+          )
         )
       );
     }
   }]);
 
-  return Enum;
-}(_react.PureComponent);
+  return Repeated;
+}(_react.Component);
 
-Enum.propTypes = {
-  name: _propTypes2.default.string.isRequired,
-  fieldInfo: _propTypes2.default.array.isRequired,
-  onChange: _propTypes2.default.func,
-  // onPressEnter: PropTypes.func,
-  value: _propTypes2.default.array,
-  className: _propTypes2.default.string
+Repeated.propTypes = {
+  value: _propTypes2.default.array.isRequired,
+  type: _propTypes2.default.oneOf(_utils.types).isRequired,
+  collapsed: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.bool]).isRequired,
+  nestedDepth: _propTypes2.default.number.isRequired,
+  documentation: _propTypes2.default.string
 };
-Enum.defaultProps = {
-  onChange: _utils.noop,
-  // onPressEnter: noop,
-  value: [{}],
-  className: ''
+Repeated.defaultProps = {
+  documentation: ''
 };
-exports.default = Enum;
+
+var _initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  this.state = { collapsed: false };
+
+  this.handleToggleCollapsed = function (e, collapsed) {
+    (0, _utils.preventDefault)(e);
+    _this2.setState({
+      collapsed: typeof collapsed === 'boolean' ? collapsed : !_this2.state.collapsed
+    });
+  };
+
+  this.renderValue = function (node, index) {
+    var name = _this2.props.name;
+    var type = node.type,
+        value = node.value;
+
+    return _react2.default.createElement(
+      'div',
+      {
+        key: index,
+        className: 'json-view-repeated-item'
+      },
+      _react2.default.createElement(
+        'span',
+        { className: 'json-view-repeated-item-index' },
+        index,
+        ': '
+      ),
+      _react2.default.createElement(_Value2.default, {
+        className: 'json-view-repeated-item-value',
+        key: index + '-1',
+        name: name,
+        type: type,
+        value: value
+      })
+    );
+  };
+
+  this.renderMessage = function (node, index) {
+    var _props2 = _this2.props,
+        nestedDepth = _props2.nestedDepth,
+        collapsed = _props2.collapsed;
+    var value = node.value;
+
+    return _react2.default.createElement(_Message2.default, {
+      key: index,
+      value: value,
+      name: index.toString(),
+      nestedDepth: nestedDepth + 1,
+      collapsed: collapsed
+    });
+  };
+
+  this.renderNode = function (node, index) {
+    var type = _this2.props.type;
+
+    if (type === _utils.typesMap.MESSAGE) {
+      return _this2.renderMessage(node, index);
+    }
+    return _this2.renderValue(node, index);
+  };
+};
+
+exports.default = Repeated;
 
 /***/ }),
 /* 24 */
@@ -3199,7 +3352,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".tree-input-item-enum {\n  cursor: pointer;\n  z-index: 1;\n  padding: 0 !important;\n  position: relative; }\n  .tree-input-item-enum.active .tree-input-item-expand-icon {\n    transform: rotate(180deg); }\n  .tree-input-item-enum .tree-input-item-enum-value {\n    line-height: 32px;\n    padding: 0 11px;\n    height: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center; }\n    .tree-input-item-enum .tree-input-item-enum-value .tree-input-item-expand-icon {\n      width: 16px;\n      height: 16px;\n      font-weight: bolder;\n      font-size: 15px;\n      position: relative;\n      left: 4px;\n      transition: all ease 300ms; }\n  .tree-input-item-enum .tree-input-enum-options {\n    z-index: 2;\n    background-color: #fbfbfb;\n    width: 100% !important;\n    padding: 0 !important;\n    position: relative;\n    top: 4px;\n    overflow: hidden;\n    transition: all ease 300ms; }\n    .tree-input-item-enum .tree-input-enum-options .tree-input-enum-option {\n      padding: 4px 11px;\n      height: 28px;\n      line-height: 28px;\n      box-sizing: content-box;\n      background-color: #fbfbfb;\n      transition: all ease 200ms; }\n", ""]);
+exports.push([module.i, ".json-view-repeated .json-view-repeated-item {\n  display: inline-flex;\n  align-items: center;\n  margin: 10px 20px 5px 0; }\n  .json-view-repeated .json-view-repeated-item .json-view-repeated-item-index {\n    display: inline-block;\n    width: 30px;\n    font-weight: bolder; }\n  .json-view-repeated .json-view-repeated-item .json-view-repeated-item-value {\n    margin-right: 26px; }\n", ""]);
 
 // exports
 
@@ -3208,120 +3361,8 @@ exports.push([module.i, ".tree-input-item-enum {\n  cursor: pointer;\n  z-index:
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _utils = __webpack_require__(4);
-
-__webpack_require__(29);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Boolean = function (_Component) {
-  _inherits(Boolean, _Component);
-
-  function Boolean() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Boolean);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Boolean.__proto__ || Object.getPrototypeOf(Boolean)).call.apply(_ref, [this].concat(args))), _this), _this.onChange = function (e, value) {
-      (0, _utils.preventDefault)(e);
-      var onChange = _this.props.onChange;
-
-      var event = _extends({}, e, { value: value, component: _this });
-      onChange(event, value, value);
-    }, _this.handleSelectTrue = function (e) {
-      _this.onChange(e, true);
-    }, _this.handleSelectFalse = function (e) {
-      _this.onChange(e, false);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Boolean, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          value = _props.value,
-          name = _props.name,
-          className = _props.className;
-
-      return _react2.default.createElement(
-        'div',
-        {
-          key: name,
-          className: 'tree-input-item-boolean ' + (value === false ? 'tree-input-false' : '') + ' ' + className
-        },
-        _react2.default.createElement(
-          'div',
-          {
-            className: value === true ? 'tree-input-boolean-active' : '',
-            onClick: this.handleSelectTrue
-          },
-          'TRUE'
-        ),
-        _react2.default.createElement(
-          'div',
-          {
-            className: value === false ? 'tree-input-boolean-active' : '',
-            onClick: this.handleSelectFalse
-          },
-          'FALSE'
-        )
-      );
-    }
-  }]);
-
-  return Boolean;
-}(_react.Component);
-
-Boolean.propTypes = {
-  name: _propTypes2.default.string.isRequired,
-  onChange: _propTypes2.default.func,
-  value: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.string]),
-  className: _propTypes2.default.string
-};
-Boolean.defaultProps = {
-  onChange: _utils.noop,
-  value: '',
-  className: ''
-};
-exports.default = Boolean;
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(30);
+var content = __webpack_require__(29);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -3367,7 +3408,7 @@ if(false) {
 }
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -3375,332 +3416,74 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".tree-input-item-boolean {\n  padding: 0 !important;\n  overflow: hidden; }\n  .tree-input-item-boolean > div {\n    width: 50%;\n    height: 100%;\n    line-height: 30px;\n    display: inline-block;\n    text-align: center;\n    cursor: pointer;\n    transition: all ease 300ms; }\n    .tree-input-item-boolean > div:hover, .tree-input-item-boolean > div.tree-input-boolean-active {\n      color: white;\n      font-weight: bold; }\n    .tree-input-item-boolean > div:first-child {\n      width: calc(50% - 1px);\n      border-right: 1px solid #d9d9d9; }\n", ""]);
+exports.push([module.i, ".json-view-tooltip {\n  position: absolute;\n  max-width: 200px;\n  background-color: #3e3e3e;\n  color: white;\n  font-weight: bold;\n  padding: 6px 11px;\n  border-radius: 4px;\n  transition: all ease-out 200ms;\n  box-shadow: rgba(0, 0, 0, 0.07) 3px 3px 7px 0;\n  font-size: 13px; }\n  .json-view-tooltip .json-view-tooltip-arrow {\n    position: absolute;\n    width: 10px;\n    height: 10px;\n    transform: rotate(45deg);\n    background-color: #3e3e3e;\n    top: calc(100% - 6px);\n    left: 12px; }\n", ""]);
 
 // exports
 
 
 /***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(31);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(3)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+exports = module.exports = __webpack_require__(2)(false);
+// imports
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+// module
+exports.push([module.i, ".json-view {\n  margin: 4px 11px;\n  transition: all ease 300ms;\n  height: auto;\n  position: relative;\n  left: -22px;\n  color: rgba(0, 43, 54, 0.8);\n  fill: rgba(0, 43, 54, 0.8); }\n  .json-view:before {\n    content: '';\n    width: 1px;\n    height: calc(100% - 2 * 25px);\n    top: 25px;\n    background-color: rgba(0, 43, 54, 0.15);\n    position: absolute; }\n  .json-view .json-view-start, .json-view .json-view-end {\n    position: relative;\n    cursor: pointer;\n    height: 28px;\n    line-height: 28px;\n    user-select: none; }\n  .json-view .json-view-start {\n    left: -6px;\n    display: inline-flex;\n    justify-content: flex-start;\n    align-items: center;\n    position: relative;\n    top: 3px; }\n    .json-view .json-view-start .json-view-expand {\n      width: 18px;\n      height: 18px;\n      fill: rgba(0, 43, 54, 0.8);\n      position: relative;\n      left: -3px;\n      top: -1px;\n      transition: all ease 300ms;\n      transform: rotate(90deg); }\n    .json-view .json-view-start .json-view-count, .json-view .json-view-start .json-view-count-empty {\n      display: inline-block;\n      margin-left: 20px;\n      opacity: 0.8;\n      font-style: italic;\n      color: rgba(0, 0, 0, 0.3);\n      min-width: 60px; }\n    .json-view .json-view-start .json-view-name {\n      font-weight: bold;\n      min-width: 40px;\n      margin-right: 8px;\n      font-size: 15px; }\n    .json-view .json-view-start .json-view-tag {\n      margin: 0 8px; }\n  .json-view .json-view-end {\n    left: -3px;\n    display: inline-block; }\n  .json-view .json-view-items {\n    margin-left: 40px; }\n    .json-view .json-view-items .json-view-item {\n      height: 28px;\n      margin: 4px 0;\n      font-size: 14px;\n      display: flex;\n      justify-content: flex-start;\n      align-items: center; }\n      .json-view .json-view-items .json-view-item > span {\n        display: inline-block; }\n      .json-view .json-view-items .json-view-item .json-view-item-info {\n        position: relative;\n        margin-right: 20px; }\n        .json-view .json-view-items .json-view-item .json-view-item-info .json-view-item-name {\n          font-size: 15px;\n          font-weight: bolder;\n          cursor: pointer;\n          display: inline-block; }\n  .json-view .json-view-item-value,\n  .json-view .json-view-repeated-item-value {\n    box-sizing: border-box; }\n\n.json-view.json-view-collapsed {\n  height: 28px;\n  border-left: none; }\n  .json-view.json-view-collapsed .json-view-start .json-view-expand {\n    color: inherit;\n    fill: inherit;\n    transform: rotate(0deg); }\n  .json-view.json-view-collapsed .json-view-items, .json-view.json-view-collapsed .json-view-end {\n    display: none; }\n", ""]);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+// exports
 
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Input = __webpack_require__(12);
-
-var _Input2 = _interopRequireDefault(_Input);
-
-var _Message = __webpack_require__(11);
-
-var _Message2 = _interopRequireDefault(_Message);
-
-var _Icon = __webpack_require__(9);
-
-var _Icon2 = _interopRequireDefault(_Icon);
-
-var _utils = __webpack_require__(4);
-
-__webpack_require__(32);
-
-var _Tooltip = __webpack_require__(13);
-
-var _Tooltip2 = _interopRequireDefault(_Tooltip);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Repeated = function (_Component) {
-  _inherits(Repeated, _Component);
-
-  function Repeated() {
-    var _ref;
-
-    _classCallCheck(this, Repeated);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    var _this = _possibleConstructorReturn(this, (_ref = Repeated.__proto__ || Object.getPrototypeOf(Repeated)).call.apply(_ref, [this].concat(args)));
-
-    _initialiseProps.call(_this);
-
-    var _this$props = _this.props,
-        nestedDepth = _this$props.nestedDepth,
-        collapsed = _this$props.collapsed;
-
-    _this.state = {
-      collapsed: typeof collapsed === 'number' ? nestedDepth >= collapsed : !!collapsed
-    };
-    return _this;
-  }
-
-  _createClass(Repeated, [{
-    key: 'render',
-    value: function render() {
-      var collapsed = this.state.collapsed;
-      var _props = this.props,
-          value = _props.value,
-          length = _props.value.length,
-          name = _props.name,
-          documentation = _props.documentation,
-          typeOrFieldInfo = _props.typeOrFieldInfo;
-
-      var isMessage = typeof typeOrFieldInfo !== 'string';
-      var isEmpty = length === 0;
-      return _react2.default.createElement(
-        'div',
-        {
-          className: 'tree-input-repeated tree-input' + (collapsed ? ' tree-input-collapsed' : '') + ' ' + (isMessage ? 'message' : typeOrFieldInfo),
-          key: name
-        },
-        _react2.default.createElement(
-          'div',
-          {
-            className: 'tree-input-start',
-            onClick: this.handleToggleCollapsed
-          },
-          _react2.default.createElement(_Icon2.default, { type: 'COLLAPSED', className: 'tree-input-expand' }),
-          _react2.default.createElement(
-            'div',
-            { className: 'tree-input-name' },
-            _react2.default.createElement(
-              'span',
-              null,
-              '"' + name + '": '
-            ),
-            _react2.default.createElement(_Tooltip2.default, { text: documentation })
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: 'tree-input-item-type' },
-            ' ',
-            isMessage ? 'message' : typeOrFieldInfo,
-            '[]'
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: 'tree-input-tag' },
-            '['
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: collapsed ? '' : 'tree-input-hide' },
-            _react2.default.createElement(
-              'span',
-              { className: 'tree-input-points' + (isEmpty ? ' tree-input-hide' : '') },
-              '...'
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: 'tree-input-tag' },
-              ']'
-            )
-          ),
-          isEmpty ? _react2.default.createElement(
-            'span',
-            { className: 'tree-input-count-empty' },
-            'Empty'
-          ) : _react2.default.createElement(
-            'span',
-            { className: 'tree-input-count' },
-            length,
-            ' Items'
-          ),
-          _react2.default.createElement(_Icon2.default, {
-            type: 'ADD',
-            className: 'tree-input-add icon-add',
-            onClick: this.handleAddItem
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'tree-input-items' },
-          value.map(this.renderNode)
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'tree-input-end' },
-          _react2.default.createElement(
-            'span',
-            { onClick: this.handleToggleCollapsed },
-            ']'
-          )
-        )
-      );
-    }
-  }, {
-    key: 'isMessage',
-    get: function get() {
-      var typeOrFieldInfo = this.props.typeOrFieldInfo;
-
-      return typeof typeOrFieldInfo !== 'string';
-    }
-  }]);
-
-  return Repeated;
-}(_react.Component);
-
-Repeated.propTypes = {
-  value: _propTypes2.default.array.isRequired,
-  typeOrFieldInfo: _propTypes2.default.oneOfType([_propTypes2.default.oneOf(_utils.types), _propTypes2.default.array]).isRequired,
-  collapsed: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.bool]).isRequired,
-  nestedDepth: _propTypes2.default.number.isRequired,
-  documentation: _propTypes2.default.string,
-  onChange: _propTypes2.default.func
-};
-Repeated.defaultProps = {
-  documentation: '',
-  onChange: _utils.noop
-};
-
-var _initialiseProps = function _initialiseProps() {
-  var _this2 = this;
-
-  this.state = { collapsed: false };
-
-  this.handleToggleCollapsed = function (e, collapsed) {
-    (0, _utils.preventDefault)(e);
-    _this2.setState({
-      collapsed: typeof collapsed === 'boolean' ? collapsed : !_this2.state.collapsed
-    });
-  };
-
-  this.handleAddInputItem = function (e) {
-    var newValue = _this2.props.value;
-
-    newValue.push('');
-    _this2.props.onChange(e, newValue);
-    _this2.handleToggleCollapsed(e, false);
-  };
-
-  this.handleAddMessageItem = function (e) {
-    var _props2 = _this2.props,
-        newValue = _props2.value,
-        fieldInfo = _props2.typeOrFieldInfo;
-
-    newValue.push((0, _utils.deepCopy)(fieldInfo));
-    _this2.props.onChange(e, newValue);
-    _this2.handleToggleCollapsed(e, false);
-  };
-
-  this.handleAddItem = function (e) {
-    (0, _utils.preventDefault)(e);
-    if (_this2.isMessage) {
-      _this2.handleAddMessageItem(e);
-    } else {
-      _this2.handleAddInputItem(e);
-    }
-  };
-
-  this.handleRemoveItem = function (e, index) {
-    (0, _utils.preventDefault)(e);
-    var newValue = _this2.props.value;
-
-    newValue.splice(index, 1);
-    _this2.props.onChange(e, newValue);
-
-    if (newValue.length === 0) {
-      _this2.handleToggleCollapsed(e, true);
-    }
-  };
-
-  this.generateOnChange = function (index) {
-    return function (e, value) {
-      var newValue = _this2.props.value;
-
-      newValue[index] = value;
-      _this2.props.onChange(e, [].concat(_toConsumableArray(newValue)));
-    };
-  };
-
-  this.renderInput = function (value, index) {
-    var _props3 = _this2.props,
-        name = _props3.name,
-        type = _props3.typeOrFieldInfo;
-
-    return _react2.default.createElement(
-      'div',
-      {
-        key: index,
-        className: 'tree-input-repeated-item'
-      },
-      _react2.default.createElement(
-        'span',
-        { className: 'tree-input-repeated-item-index' },
-        index,
-        ': '
-      ),
-      _react2.default.createElement(_Input2.default, {
-        className: 'tree-input-repeated-item-input',
-        key: index + '-1',
-        name: name,
-        type: type,
-        value: value,
-        onChange: _this2.generateOnChange(index)
-      }),
-      _react2.default.createElement(_Icon2.default, {
-        type: 'REMOVE',
-        className: 'tree-input-remove icon-remove',
-        onClick: function onClick(e) {
-          return _this2.handleRemoveItem(e, index);
-        }
-      })
-    );
-  };
-
-  this.renderMessage = function (value, index) {
-    var fieldInfo = _this2.props.typeOrFieldInfo;
-    var _props4 = _this2.props,
-        nestedDepth = _props4.nestedDepth,
-        collapsed = _props4.collapsed;
-
-    return _react2.default.createElement(_Message2.default, {
-      key: index,
-      value: value || fieldInfo,
-      name: index.toString(),
-      nestedDepth: nestedDepth + 1,
-      collapsed: collapsed,
-      onChange: _this2.generateOnChange(index),
-      onRemove: function onRemove(e) {
-        return _this2.handleRemoveItem(e, index);
-      }
-    });
-  };
-
-  this.renderNode = function (value, index) {
-    var typeOrFieldInfo = _this2.props.typeOrFieldInfo;
-
-    if (_this2.isMessage) {
-      return _this2.renderMessage(value || typeOrFieldInfo, index);
-    }
-    return _this2.renderInput(value, index);
-  };
-};
-
-exports.default = Repeated;
 
 /***/ }),
 /* 32 */
@@ -3708,198 +3491,6 @@ exports.default = Repeated;
 
 
 var content = __webpack_require__(33);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(3)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".tree-input-repeated .tree-input-repeated-item {\n  display: inline-flex;\n  align-items: center;\n  margin: 10px 20px 5px 0; }\n  .tree-input-repeated .tree-input-repeated-item .tree-input-repeated-item-index {\n    display: inline-block;\n    width: 30px;\n    font-weight: bolder; }\n  .tree-input-repeated .tree-input-repeated-item .tree-input-repeated-item-input {\n    width: 120px; }\n\n.tree-input-repeated .tree-input-add, .tree-input-repeated .tree-input-remove {\n  font-size: 24px;\n  cursor: pointer;\n  transition: all ease 300ms;\n  width: 24px;\n  height: 24px; }\n  .tree-input-repeated .tree-input-add:hover, .tree-input-repeated .tree-input-remove:hover {\n    transform: scale(1.3) rotate(-180deg); }\n\n.tree-input-repeated .tree-input-add {\n  margin-left: 26px; }\n\n.tree-input-repeated .tree-input-remove {\n  margin-left: 10px; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(35);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(3)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".tree-input-tooltip {\n  position: absolute;\n  max-width: 200px;\n  background-color: #3e3e3e;\n  color: white;\n  font-weight: bold;\n  padding: 6px 11px;\n  border-radius: 4px;\n  transition: all ease-out 200ms;\n  box-shadow: rgba(0, 0, 0, 0.07) 3px 3px 7px 0;\n  font-size: 13px; }\n  .tree-input-tooltip .tree-input-tooltip-arrow {\n    position: absolute;\n    width: 10px;\n    height: 10px;\n    transform: rotate(45deg);\n    background-color: #3e3e3e;\n    top: calc(100% - 6px);\n    left: 12px; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(37);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(3)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".tree-input {\n  margin: 8px 10px;\n  transition: all ease 300ms;\n  height: auto;\n  position: relative;\n  left: -22px;\n  color: rgba(0, 43, 54, 0.8);\n  fill: rgba(0, 43, 54, 0.8); }\n  .tree-input:before {\n    content: '';\n    width: 1px;\n    height: calc(100% - 2 * 25px);\n    top: 25px;\n    background-color: rgba(0, 43, 54, 0.15);\n    position: absolute; }\n  .tree-input .tree-input-start, .tree-input .tree-input-end {\n    position: relative;\n    cursor: pointer;\n    height: 25px;\n    user-select: none; }\n  .tree-input .tree-input-start {\n    left: -6px;\n    display: inline-flex;\n    justify-content: flex-start;\n    align-items: center;\n    position: relative;\n    top: 3px; }\n    .tree-input .tree-input-start .tree-input-expand {\n      width: 18px;\n      height: 18px;\n      fill: rgba(0, 43, 54, 0.8);\n      position: relative;\n      left: -3px;\n      top: -1px;\n      transition: all ease 300ms;\n      transform: rotate(90deg); }\n    .tree-input .tree-input-start .tree-input-count, .tree-input .tree-input-start .tree-input-count-empty {\n      display: inline-block;\n      margin-left: 20px;\n      opacity: 0.8;\n      font-style: italic;\n      color: rgba(0, 0, 0, 0.3);\n      min-width: 60px; }\n    .tree-input .tree-input-start .tree-input-name {\n      font-weight: bold;\n      min-width: 40px;\n      margin-right: 8px;\n      font-size: 15px; }\n    .tree-input .tree-input-start .tree-input-tag {\n      margin: 0 8px; }\n    .tree-input .tree-input-start .tree-input-remove {\n      margin-left: 20px; }\n  .tree-input .tree-input-end {\n    left: -3px;\n    display: inline-block; }\n  .tree-input .tree-input-items {\n    margin-left: 40px; }\n    .tree-input .tree-input-items .tree-input-item {\n      height: 32px;\n      margin: 8px 0;\n      font-size: 14px;\n      display: flex;\n      justify-content: flex-start;\n      align-items: center; }\n      .tree-input .tree-input-items .tree-input-item > span, .tree-input .tree-input-items .tree-input-item > input {\n        display: inline-block; }\n      .tree-input .tree-input-items .tree-input-item .tree-input-item-info {\n        position: relative;\n        min-width: 240px; }\n        .tree-input .tree-input-items .tree-input-item .tree-input-item-info .tree-input-item-name {\n          font-size: 15px;\n          font-weight: bolder;\n          cursor: pointer;\n          display: inline-block; }\n  .tree-input .tree-input-item-input,\n  .tree-input .tree-input-item-enum,\n  .tree-input .tree-input-enum-options,\n  .tree-input .tree-input-item-boolean,\n  .tree-input .tree-input-repeated-item-input {\n    min-width: 150px;\n    width: 220px;\n    height: 32px;\n    line-height: 1.5;\n    padding: 4px 11px;\n    box-sizing: border-box;\n    border: 1px solid #d9d9d9;\n    border-radius: 4px;\n    color: rgba(0, 0, 0, 0.65);\n    transition: all ease 300ms;\n    background: white; }\n    .tree-input .tree-input-item-input::placeholder, .tree-input .tree-input-item-input .tree-input-place-holder,\n    .tree-input .tree-input-item-enum::placeholder,\n    .tree-input .tree-input-item-enum .tree-input-place-holder,\n    .tree-input .tree-input-enum-options::placeholder,\n    .tree-input .tree-input-enum-options .tree-input-place-holder,\n    .tree-input .tree-input-item-boolean::placeholder,\n    .tree-input .tree-input-item-boolean .tree-input-place-holder,\n    .tree-input .tree-input-repeated-item-input::placeholder,\n    .tree-input .tree-input-repeated-item-input .tree-input-place-holder {\n      font-family: monospace;\n      font-size: 13px;\n      opacity: 0.8;\n      color: #b6b6b6; }\n    .tree-input .tree-input-item-input:focus,\n    .tree-input .tree-input-item-enum:focus,\n    .tree-input .tree-input-enum-options:focus,\n    .tree-input .tree-input-item-boolean:focus,\n    .tree-input .tree-input-repeated-item-input:focus {\n      border-color: #40a9ff;\n      outline: none;\n      box-shadow: 0 0 4px 1px rgba(59, 169, 255, 0.71); }\n\n.tree-input.tree-input-collapsed {\n  height: 32px;\n  border-left: none; }\n  .tree-input.tree-input-collapsed .tree-input-start .tree-input-expand {\n    color: inherit;\n    fill: inherit;\n    transform: rotate(0deg); }\n  .tree-input.tree-input-collapsed .tree-input-items, .tree-input.tree-input-collapsed .tree-input-end {\n    display: none; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(39);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -3945,7 +3536,7 @@ if(false) {
 }
 
 /***/ }),
-/* 39 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -3953,7 +3544,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".tree-input-root {\n  margin: 0 0 0 40px;\n  padding: 0;\n  font-family: monospace;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n  .tree-input-root .tree-input-hide {\n    opacity: 0; }\n  .tree-input-root .tree-input-name .tree-input-tooltip, .tree-input-root .tree-input-item-name .tree-input-tooltip {\n    transform: scale(0.1) translateY(calc(-200% - 26px));\n    opacity: 0; }\n  .tree-input-root .tree-input-name:hover .tree-input-tooltip, .tree-input-root .tree-input-item-name:hover .tree-input-tooltip {\n    transform: scale(1) translateY(calc(-100% - 26px));\n    opacity: 1; }\n  .tree-input-root .tree-input-points {\n    font-weight: bolder;\n    font-size: 16px;\n    line-height: 5px;\n    letter-spacing: -0.1em; }\n  .tree-input-root .tree-input-tag {\n    font-weight: bolder; }\n  .tree-input-root .tree-input-item-type {\n    margin-right: 20px;\n    font-style: italic;\n    font-size: 14px; }\n  .tree-input-root .tree-input-repeated .tree-input-add {\n    color: #48b8f5;\n    fill: #48b8f5; }\n  .tree-input-root .tree-input-repeated .tree-input-remove {\n    color: #f35d6f;\n    fill: #f35d6f; }\n  .tree-input-root .message .tree-input-item-type,\n  .tree-input-root .message .tree-input-expand,\n  .tree-input-root .message .tree-input-points {\n    color: #f35d6f;\n    fill: #f35d6f; }\n  .tree-input-root .boolean .tree-input-item-type,\n  .tree-input-root .boolean .tree-input-expand,\n  .tree-input-root .boolean .tree-input-points {\n    color: #33d391;\n    fill: #33d391; }\n  .tree-input-root .boolean .tree-input-item-boolean {\n    border-color: rgba(51, 211, 145, 0.4); }\n    .tree-input-root .boolean .tree-input-item-boolean.tree-input-false {\n      border-color: rgba(243, 7, 3, 0.44); }\n      .tree-input-root .boolean .tree-input-item-boolean.tree-input-false > div:first-child {\n        border-color: white; }\n    .tree-input-root .boolean .tree-input-item-boolean:hover > div:first-child {\n      border-right-color: #FFFF; }\n    .tree-input-root .boolean .tree-input-item-boolean > div:first-child {\n      border-color: rgba(51, 211, 145, 0.4);\n      color: #33d391; }\n      .tree-input-root .boolean .tree-input-item-boolean > div:first-child:hover, .tree-input-root .boolean .tree-input-item-boolean > div:first-child.tree-input-boolean-active {\n        background-color: #33d391;\n        color: white; }\n    .tree-input-root .boolean .tree-input-item-boolean > div:last-child {\n      color: #f35d6f; }\n      .tree-input-root .boolean .tree-input-item-boolean > div:last-child:hover, .tree-input-root .boolean .tree-input-item-boolean > div:last-child.tree-input-boolean-active {\n        background-color: #f35d6f;\n        color: white; }\n  .tree-input-root .enum .tree-input-item-type,\n  .tree-input-root .enum .tree-input-expand,\n  .tree-input-root .enum .tree-input-points {\n    color: #c84ee6;\n    fill: #c84ee6; }\n  .tree-input-root .enum .tree-input-item-enum {\n    color: #c84ee6;\n    border-color: rgba(200, 78, 230, 0.4); }\n    .tree-input-root .enum .tree-input-item-enum .tree-input-item-enum-value .tree-input-item-expand-icon {\n      color: #d024d0;\n      fill: #d024d0; }\n    .tree-input-root .enum .tree-input-item-enum.active, .tree-input-root .enum .tree-input-item-enum .tree-input-enum-options {\n      border-color: #c84ee6;\n      box-shadow: 0 0 4px 1px rgba(200, 78, 230, 0.71); }\n    .tree-input-root .enum .tree-input-item-enum .tree-input-enum-options .tree-input-enum-option.active {\n      font-weight: bold;\n      background-color: #dd68d9;\n      color: white; }\n    .tree-input-root .enum .tree-input-item-enum .tree-input-enum-options .tree-input-enum-option:hover {\n      color: white;\n      background-color: #bf5ccd; }\n  .tree-input-root .string .tree-input-item-type,\n  .tree-input-root .string .tree-input-expand,\n  .tree-input-root .string .tree-input-points,\n  .tree-input-root .string .tree-input-item-input, .tree-input-root .string .tree-input-repeated-item-input, .tree-input-root .bytes .tree-input-item-type,\n  .tree-input-root .bytes .tree-input-expand,\n  .tree-input-root .bytes .tree-input-points,\n  .tree-input-root .bytes .tree-input-item-input, .tree-input-root .bytes .tree-input-repeated-item-input {\n    color: #e9782a;\n    fill: #e9782a; }\n  .tree-input-root .string .tree-input-item-input, .tree-input-root .string .tree-input-repeated-item-input, .tree-input-root .bytes .tree-input-item-input, .tree-input-root .bytes .tree-input-repeated-item-input {\n    border-color: rgba(233, 120, 42, 0.4); }\n    .tree-input-root .string .tree-input-item-input:focus, .tree-input-root .string .tree-input-repeated-item-input:focus, .tree-input-root .bytes .tree-input-item-input:focus, .tree-input-root .bytes .tree-input-repeated-item-input:focus {\n      border-color: #e9782a;\n      box-shadow: 0 0 4px 1px rgba(233, 120, 42, 0.71); }\n  .tree-input-root .double .tree-input-item-type,\n  .tree-input-root .double .tree-input-expand,\n  .tree-input-root .double .tree-input-points,\n  .tree-input-root .double .tree-input-item-input,\n  .tree-input-root .double .tree-input-repeated-item-input, .tree-input-root .float .tree-input-item-type,\n  .tree-input-root .float .tree-input-expand,\n  .tree-input-root .float .tree-input-points,\n  .tree-input-root .float .tree-input-item-input,\n  .tree-input-root .float .tree-input-repeated-item-input {\n    color: #859900;\n    fill: #859900; }\n  .tree-input-root .double .tree-input-item-input,\n  .tree-input-root .double .tree-input-repeated-item-input, .tree-input-root .float .tree-input-item-input,\n  .tree-input-root .float .tree-input-repeated-item-input {\n    border-color: rgba(133, 153, 0, 0.4); }\n    .tree-input-root .double .tree-input-item-input:focus,\n    .tree-input-root .double .tree-input-repeated-item-input:focus, .tree-input-root .float .tree-input-item-input:focus,\n    .tree-input-root .float .tree-input-repeated-item-input:focus {\n      border-color: #859900;\n      box-shadow: 0 0 4px 1px rgba(133, 153, 0, 0.71); }\n  .tree-input-root .int32 .tree-input-item-type,\n  .tree-input-root .int32 .tree-input-expand,\n  .tree-input-root .int32 .tree-input-points,\n  .tree-input-root .int32 .tree-input-item-input,\n  .tree-input-root .int32 .tree-input-repeated-item-input, .tree-input-root .uint32 .tree-input-item-type,\n  .tree-input-root .uint32 .tree-input-expand,\n  .tree-input-root .uint32 .tree-input-points,\n  .tree-input-root .uint32 .tree-input-item-input,\n  .tree-input-root .uint32 .tree-input-repeated-item-input, .tree-input-root .sint32 .tree-input-item-type,\n  .tree-input-root .sint32 .tree-input-expand,\n  .tree-input-root .sint32 .tree-input-points,\n  .tree-input-root .sint32 .tree-input-item-input,\n  .tree-input-root .sint32 .tree-input-repeated-item-input, .tree-input-root .fixed32 .tree-input-item-type,\n  .tree-input-root .fixed32 .tree-input-expand,\n  .tree-input-root .fixed32 .tree-input-points,\n  .tree-input-root .fixed32 .tree-input-item-input,\n  .tree-input-root .fixed32 .tree-input-repeated-item-input, .tree-input-root .sfixed32 .tree-input-item-type,\n  .tree-input-root .sfixed32 .tree-input-expand,\n  .tree-input-root .sfixed32 .tree-input-points,\n  .tree-input-root .sfixed32 .tree-input-item-input,\n  .tree-input-root .sfixed32 .tree-input-repeated-item-input {\n    color: #23addb;\n    fill: #23addb; }\n  .tree-input-root .int32 .tree-input-item-input,\n  .tree-input-root .int32 .tree-input-repeated-item-input, .tree-input-root .uint32 .tree-input-item-input,\n  .tree-input-root .uint32 .tree-input-repeated-item-input, .tree-input-root .sint32 .tree-input-item-input,\n  .tree-input-root .sint32 .tree-input-repeated-item-input, .tree-input-root .fixed32 .tree-input-item-input,\n  .tree-input-root .fixed32 .tree-input-repeated-item-input, .tree-input-root .sfixed32 .tree-input-item-input,\n  .tree-input-root .sfixed32 .tree-input-repeated-item-input {\n    border-color: rgba(35, 173, 219, 0.4); }\n    .tree-input-root .int32 .tree-input-item-input:focus,\n    .tree-input-root .int32 .tree-input-repeated-item-input:focus, .tree-input-root .uint32 .tree-input-item-input:focus,\n    .tree-input-root .uint32 .tree-input-repeated-item-input:focus, .tree-input-root .sint32 .tree-input-item-input:focus,\n    .tree-input-root .sint32 .tree-input-repeated-item-input:focus, .tree-input-root .fixed32 .tree-input-item-input:focus,\n    .tree-input-root .fixed32 .tree-input-repeated-item-input:focus, .tree-input-root .sfixed32 .tree-input-item-input:focus,\n    .tree-input-root .sfixed32 .tree-input-repeated-item-input:focus {\n      border-color: #23addb;\n      box-shadow: 0 0 4px 1px rgba(35, 173, 219, 0.71); }\n  .tree-input-root .int64 .tree-input-item-type,\n  .tree-input-root .int64 .tree-input-expand,\n  .tree-input-root .int64 .tree-input-points,\n  .tree-input-root .int64 .tree-input-item-input,\n  .tree-input-root .int64 .tree-input-repeated-item-input, .tree-input-root .uint64 .tree-input-item-type,\n  .tree-input-root .uint64 .tree-input-expand,\n  .tree-input-root .uint64 .tree-input-points,\n  .tree-input-root .uint64 .tree-input-item-input,\n  .tree-input-root .uint64 .tree-input-repeated-item-input, .tree-input-root .sint64 .tree-input-item-type,\n  .tree-input-root .sint64 .tree-input-expand,\n  .tree-input-root .sint64 .tree-input-points,\n  .tree-input-root .sint64 .tree-input-item-input,\n  .tree-input-root .sint64 .tree-input-repeated-item-input, .tree-input-root .fixed64 .tree-input-item-type,\n  .tree-input-root .fixed64 .tree-input-expand,\n  .tree-input-root .fixed64 .tree-input-points,\n  .tree-input-root .fixed64 .tree-input-item-input,\n  .tree-input-root .fixed64 .tree-input-repeated-item-input, .tree-input-root .sfixed64 .tree-input-item-type,\n  .tree-input-root .sfixed64 .tree-input-expand,\n  .tree-input-root .sfixed64 .tree-input-points,\n  .tree-input-root .sfixed64 .tree-input-item-input,\n  .tree-input-root .sfixed64 .tree-input-repeated-item-input {\n    color: #4e86de;\n    fill: #4e86de; }\n  .tree-input-root .int64 .tree-input-item-input,\n  .tree-input-root .int64 .tree-input-repeated-item-input, .tree-input-root .uint64 .tree-input-item-input,\n  .tree-input-root .uint64 .tree-input-repeated-item-input, .tree-input-root .sint64 .tree-input-item-input,\n  .tree-input-root .sint64 .tree-input-repeated-item-input, .tree-input-root .fixed64 .tree-input-item-input,\n  .tree-input-root .fixed64 .tree-input-repeated-item-input, .tree-input-root .sfixed64 .tree-input-item-input,\n  .tree-input-root .sfixed64 .tree-input-repeated-item-input {\n    border-color: rgba(78, 134, 222, 0.4); }\n    .tree-input-root .int64 .tree-input-item-input:focus,\n    .tree-input-root .int64 .tree-input-repeated-item-input:focus, .tree-input-root .uint64 .tree-input-item-input:focus,\n    .tree-input-root .uint64 .tree-input-repeated-item-input:focus, .tree-input-root .sint64 .tree-input-item-input:focus,\n    .tree-input-root .sint64 .tree-input-repeated-item-input:focus, .tree-input-root .fixed64 .tree-input-item-input:focus,\n    .tree-input-root .fixed64 .tree-input-repeated-item-input:focus, .tree-input-root .sfixed64 .tree-input-item-input:focus,\n    .tree-input-root .sfixed64 .tree-input-repeated-item-input:focus {\n      border-color: #4e86de;\n      box-shadow: 0 0 4px 1px rgba(78, 134, 222, 0.71); }\n", ""]);
+exports.push([module.i, ".json-view-root {\n  margin: 0 0 0 22px;\n  padding: 0;\n  font-family: monospace;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  position: relative;\n  left: 0; }\n  .json-view-root .json-view-hide {\n    opacity: 0; }\n  .json-view-root .json-view-name .json-view-tooltip, .json-view-root .json-view-item-name .json-view-tooltip {\n    transform: scale(0.1) translateY(calc(-200% - 26px));\n    opacity: 0; }\n  .json-view-root .json-view-name:hover .json-view-tooltip, .json-view-root .json-view-item-name:hover .json-view-tooltip {\n    transform: scale(1) translateY(calc(-100% - 26px));\n    opacity: 1; }\n  .json-view-root .json-view-points {\n    font-weight: bolder;\n    font-size: 16px;\n    line-height: 5px;\n    letter-spacing: -0.1em; }\n  .json-view-root .json-view-tag {\n    font-weight: bolder; }\n  .json-view-root .json-view-item-type {\n    margin-right: 20px;\n    font-style: italic;\n    font-size: 14px; }\n  .json-view-root .message .json-view-item-type,\n  .json-view-root .message .json-view-expand,\n  .json-view-root .message .json-view-points {\n    color: #f35d6f;\n    fill: #f35d6f; }\n  .json-view-root .boolean .json-view-item-type,\n  .json-view-root .boolean .json-view-expand,\n  .json-view-root .boolean .json-view-points,\n  .json-view-root .boolean .json-view-value {\n    color: #33d391;\n    fill: #33d391; }\n    .json-view-root .boolean .json-view-item-type.true,\n    .json-view-root .boolean .json-view-expand.true,\n    .json-view-root .boolean .json-view-points.true,\n    .json-view-root .boolean .json-view-value.true {\n      color: #33d391;\n      fill: #33d391; }\n    .json-view-root .boolean .json-view-item-type.false,\n    .json-view-root .boolean .json-view-expand.false,\n    .json-view-root .boolean .json-view-points.false,\n    .json-view-root .boolean .json-view-value.false {\n      color: #f35d6f;\n      fill: #f35d6f; }\n  .json-view-root .string .json-view-item-type,\n  .json-view-root .string .json-view-expand,\n  .json-view-root .string .json-view-points,\n  .json-view-root .string .json-view-item-value,\n  .json-view-root .string .json-view-repeated-item-value, .json-view-root .bytes .json-view-item-type,\n  .json-view-root .bytes .json-view-expand,\n  .json-view-root .bytes .json-view-points,\n  .json-view-root .bytes .json-view-item-value,\n  .json-view-root .bytes .json-view-repeated-item-value {\n    color: #e9782a;\n    fill: #e9782a; }\n  .json-view-root .double .json-view-item-type,\n  .json-view-root .double .json-view-expand,\n  .json-view-root .double .json-view-points,\n  .json-view-root .double .json-view-item-value,\n  .json-view-root .double .json-view-repeated-item-value, .json-view-root .float .json-view-item-type,\n  .json-view-root .float .json-view-expand,\n  .json-view-root .float .json-view-points,\n  .json-view-root .float .json-view-item-value,\n  .json-view-root .float .json-view-repeated-item-value {\n    color: #8266de;\n    fill: #8266de; }\n  .json-view-root .int .json-view-item-type,\n  .json-view-root .int .json-view-expand,\n  .json-view-root .int .json-view-points,\n  .json-view-root .int .json-view-item-value,\n  .json-view-root .int .json-view-repeated-item-value, .json-view-root .int32 .json-view-item-type,\n  .json-view-root .int32 .json-view-expand,\n  .json-view-root .int32 .json-view-points,\n  .json-view-root .int32 .json-view-item-value,\n  .json-view-root .int32 .json-view-repeated-item-value, .json-view-root .uint32 .json-view-item-type,\n  .json-view-root .uint32 .json-view-expand,\n  .json-view-root .uint32 .json-view-points,\n  .json-view-root .uint32 .json-view-item-value,\n  .json-view-root .uint32 .json-view-repeated-item-value, .json-view-root .sint32 .json-view-item-type,\n  .json-view-root .sint32 .json-view-expand,\n  .json-view-root .sint32 .json-view-points,\n  .json-view-root .sint32 .json-view-item-value,\n  .json-view-root .sint32 .json-view-repeated-item-value, .json-view-root .fixed32 .json-view-item-type,\n  .json-view-root .fixed32 .json-view-expand,\n  .json-view-root .fixed32 .json-view-points,\n  .json-view-root .fixed32 .json-view-item-value,\n  .json-view-root .fixed32 .json-view-repeated-item-value, .json-view-root .sfixed32 .json-view-item-type,\n  .json-view-root .sfixed32 .json-view-expand,\n  .json-view-root .sfixed32 .json-view-points,\n  .json-view-root .sfixed32 .json-view-item-value,\n  .json-view-root .sfixed32 .json-view-repeated-item-value {\n    color: #23aedd;\n    fill: #23aedd; }\n  .json-view-root .int64 .json-view-item-type,\n  .json-view-root .int64 .json-view-expand,\n  .json-view-root .int64 .json-view-points,\n  .json-view-root .int64 .json-view-item-value,\n  .json-view-root .int64 .json-view-repeated-item-value, .json-view-root .uint64 .json-view-item-type,\n  .json-view-root .uint64 .json-view-expand,\n  .json-view-root .uint64 .json-view-points,\n  .json-view-root .uint64 .json-view-item-value,\n  .json-view-root .uint64 .json-view-repeated-item-value, .json-view-root .sint64 .json-view-item-type,\n  .json-view-root .sint64 .json-view-expand,\n  .json-view-root .sint64 .json-view-points,\n  .json-view-root .sint64 .json-view-item-value,\n  .json-view-root .sint64 .json-view-repeated-item-value, .json-view-root .fixed64 .json-view-item-type,\n  .json-view-root .fixed64 .json-view-expand,\n  .json-view-root .fixed64 .json-view-points,\n  .json-view-root .fixed64 .json-view-item-value,\n  .json-view-root .fixed64 .json-view-repeated-item-value, .json-view-root .sfixed64 .json-view-item-type,\n  .json-view-root .sfixed64 .json-view-expand,\n  .json-view-root .sfixed64 .json-view-points,\n  .json-view-root .sfixed64 .json-view-item-value,\n  .json-view-root .sfixed64 .json-view-repeated-item-value {\n    color: #859900;\n    fill: #859900; }\n  .json-view-root .null .json-view-item-type,\n  .json-view-root .null .json-view-expand,\n  .json-view-root .null .json-view-points,\n  .json-view-root .null .json-view-item-value,\n  .json-view-root .null .json-view-repeated-item-value {\n    color: #e632c0;\n    fill: #e632c0; }\n", ""]);
 
 // exports
 
