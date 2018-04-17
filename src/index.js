@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import parseJson from 'big-json-parser';
 
 import Message from './component/Message';
+import TextMessage from './component/TextMessage';
 
 import './index.scss';
 
 
 function ProtoJsonView(props) {
   const {
-    src, rootName, collapsed, mode,
+    src, rootName, collapsed, mode, textView
   } = props;
   let value;
   if (typeof src === 'string') {
@@ -20,8 +21,10 @@ function ProtoJsonView(props) {
   } else {
     value = parseJson(JSON.stringify(src));
   }
+
+  const Component = textView ? TextMessage : Message;
   return (
-    <Message
+    <Component
       value={value}
       name={rootName}
       collapsed={collapsed}
@@ -39,12 +42,14 @@ ProtoJsonView.propTypes = {
   rootName: PropTypes.string,
   collapsed: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   mode: PropTypes.oneOf(['proto', 'json']),
+  textView: PropTypes.bool,
 };
 
 ProtoJsonView.defaultProps = {
   rootName: 'Root',
   collapsed: true,
   mode: 'proto',
+  textView: false,
 };
 
 

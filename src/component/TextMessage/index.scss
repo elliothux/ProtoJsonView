@@ -1,0 +1,12 @@
+
+.text-view {
+  p {
+    margin: 0;
+  }
+  .text-view-items {
+    margin-left: 40px;
+  }
+  .text-view-repeated > .text-view {
+    margin-left: 40px;
+  }
+}

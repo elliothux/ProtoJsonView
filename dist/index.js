@@ -775,127 +775,6 @@ process.umask = function() { return 0; };
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function validateFormat(format) {};
-
-if (process.env.NODE_ENV !== 'production') {
-  validateFormat = function validateFormat(format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  };
-}
-
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-}
-
-module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -967,6 +846,127 @@ exports.isString = isString;
 exports.isNull = isNull;
 
 /***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+module.exports = invariant;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -981,7 +981,7 @@ exports.isNull = isNull;
 
 
 
-var emptyFunction = __webpack_require__(5);
+var emptyFunction = __webpack_require__(6);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1074,7 +1074,7 @@ var _Icon2 = _interopRequireDefault(_Icon);
 
 __webpack_require__(30);
 
-var _utils = __webpack_require__(8);
+var _utils = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1340,7 +1340,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _utils = __webpack_require__(8);
+var _utils = __webpack_require__(5);
 
 __webpack_require__(20);
 
@@ -1543,7 +1543,11 @@ var _Message = __webpack_require__(10);
 
 var _Message2 = _interopRequireDefault(_Message);
 
-__webpack_require__(32);
+var _TextMessage = __webpack_require__(32);
+
+var _TextMessage2 = _interopRequireDefault(_TextMessage);
+
+__webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1551,7 +1555,8 @@ function ProtoJsonView(props) {
   var src = props.src,
       rootName = props.rootName,
       collapsed = props.collapsed,
-      mode = props.mode;
+      mode = props.mode,
+      textView = props.textView;
 
   var value = void 0;
   if (typeof src === 'string') {
@@ -1561,7 +1566,9 @@ function ProtoJsonView(props) {
   } else {
     value = (0, _bigJsonParser2.default)(JSON.stringify(src));
   }
-  return _react2.default.createElement(_Message2.default, {
+
+  var Component = textView ? _TextMessage2.default : _Message2.default;
+  return _react2.default.createElement(Component, {
     value: value,
     name: rootName,
     collapsed: collapsed,
@@ -1573,13 +1580,15 @@ ProtoJsonView.propTypes = {
   src: _propTypes2.default.PropTypes.oneOfType([_propTypes2.default.string, _propTypes2.default.object, _propTypes2.default.array]).isRequired,
   rootName: _propTypes2.default.string,
   collapsed: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.bool]),
-  mode: _propTypes2.default.oneOf(['proto', 'json'])
+  mode: _propTypes2.default.oneOf(['proto', 'json']),
+  textView: _propTypes2.default.bool
 };
 
 ProtoJsonView.defaultProps = {
   rootName: 'Root',
   collapsed: true,
-  mode: 'proto'
+  mode: 'proto',
+  textView: false
 };
 
 exports.default = ProtoJsonView;
@@ -1598,12 +1607,12 @@ exports.default = ProtoJsonView;
 
 
 
-var emptyFunction = __webpack_require__(5);
-var invariant = __webpack_require__(6);
+var emptyFunction = __webpack_require__(6);
+var invariant = __webpack_require__(7);
 var warning = __webpack_require__(9);
 var assign = __webpack_require__(16);
 
-var ReactPropTypesSecret = __webpack_require__(7);
+var ReactPropTypesSecret = __webpack_require__(8);
 var checkPropTypes = __webpack_require__(17);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -2246,9 +2255,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(6);
+  var invariant = __webpack_require__(7);
   var warning = __webpack_require__(9);
-  var ReactPropTypesSecret = __webpack_require__(7);
+  var ReactPropTypesSecret = __webpack_require__(8);
   var loggedTypeFailures = {};
 }
 
@@ -2312,9 +2321,9 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(5);
-var invariant = __webpack_require__(6);
-var ReactPropTypesSecret = __webpack_require__(7);
+var emptyFunction = __webpack_require__(6);
+var invariant = __webpack_require__(7);
+var ReactPropTypesSecret = __webpack_require__(8);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -3016,7 +3025,7 @@ var _Icon = __webpack_require__(12);
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _utils = __webpack_require__(8);
+var _utils = __webpack_require__(5);
 
 __webpack_require__(26);
 
@@ -3489,8 +3498,261 @@ exports.push([module.i, ".json-view {\n  margin: 4px 11px;\n  transition: all ea
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-var content = __webpack_require__(33);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+__webpack_require__(33);
+
+var _utils = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TextMessage = function (_Component) {
+  _inherits(TextMessage, _Component);
+
+  function TextMessage() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, TextMessage);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextMessage.__proto__ || Object.getPrototypeOf(TextMessage)).call.apply(_ref, [this].concat(args))), _this), _this.renderValue = function (node, isRepeatedItem, index, isLast) {
+      var name = node.name,
+          type = node.type,
+          value = node.value;
+
+      var displayValue = void 0;
+      if (type === _utils.typesMap.BYTES || type === _utils.typesMap.STRING) {
+        displayValue = '"' + value + '"';
+      } else if (type === 'null') {
+        displayValue = 'null';
+      } else {
+        displayValue = value.toString();
+      }
+      return isRepeatedItem ? _react2.default.createElement(
+        'span',
+        {
+          className: 'text-view-item ' + type,
+          key: index
+        },
+        displayValue.toString(),
+        isLast ? '' : ', '
+      ) : _react2.default.createElement(
+        'div',
+        {
+          className: 'text-view-item ' + type,
+          key: name
+        },
+        '"' + name + '": ',
+        displayValue.toString(),
+        isLast ? '' : ','
+      );
+    }, _this.renderMessage = function (node, isRepeatedItem, index, isLast) {
+      var name = node.name,
+          value = node.value;
+      var nestedDepth = _this.props.nestedDepth;
+
+      return _react2.default.createElement(TextMessage, {
+        key: isRepeatedItem ? index : name,
+        value: value,
+        name: name,
+        nestedDepth: nestedDepth + 1,
+        isRepeatedItem: isRepeatedItem,
+        isLast: isLast
+      });
+    }, _this.renderRepeated = function (node, isLast) {
+      var name = node.name,
+          type = node.type,
+          value = node.value;
+
+      var renderNode = function renderNode(i, index) {
+        return _this.renderNode(i, true, index, index === value.length - 1);
+      };
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'text-view-repeated ' + type,
+          key: name
+        },
+        '"' + name + '": ',
+        '[ ',
+        value.map(renderNode),
+        ' ]',
+        isLast ? '' : ','
+      );
+    }, _this.renderNode = function (node, isRepeatedItem, index, isLast) {
+      if (typeof isRepeatedItem !== 'boolean') {
+        isRepeatedItem = false;
+      }
+      if (typeof isLast !== 'boolean') {
+        isLast = false;
+      }
+      var label = node.label,
+          type = node.type;
+
+      if (label === 'REPEATED') {
+        return _this.renderRepeated(node, isLast);
+      } else if (type === _utils.typesMap.MESSAGE) {
+        return _this.renderMessage(node, isRepeatedItem, index, isLast);
+      }
+      return _this.renderValue(node, isRepeatedItem, index, isLast);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(TextMessage, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          value = _props.value,
+          name = _props.name,
+          nestedDepth = _props.nestedDepth,
+          isRepeatedItem = _props.isRepeatedItem,
+          isLast = _props.isLast;
+
+      var isRoot = nestedDepth === 1;
+      var renderNode = function renderNode(i, index) {
+        return _this2.renderNode(i, false, index, index === value.length - 1);
+      };
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'text-view' + (isRoot ? ' text-view-root' : '') + ' message',
+          key: name
+        },
+        _react2.default.createElement(
+          'div',
+          { className: 'text-view-start' },
+          isRepeatedItem ? '' : '"' + name + '": ',
+          '{'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'text-view-items' },
+          value.map(renderNode)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'text-view-end' },
+          '}',
+          isRoot || isLast ? '' : ','
+        )
+      );
+    }
+  }]);
+
+  return TextMessage;
+}(_react.Component);
+
+TextMessage.propTypes = {
+  value: _propTypes2.default.array.isRequired,
+  name: _propTypes2.default.string.isRequired,
+  nestedDepth: _propTypes2.default.number.isRequired,
+  isRepeatedItem: _propTypes2.default.bool,
+  isLast: _propTypes2.default.bool
+};
+TextMessage.defaultProps = {
+  isRepeatedItem: false,
+  isLast: false
+};
+exports.default = TextMessage;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(34);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(3)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".text-view p {\n  margin: 0; }\n\n.text-view .text-view-items {\n  margin-left: 40px; }\n\n.text-view .text-view-repeated > .text-view {\n  margin-left: 40px; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(36);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -3536,7 +3798,7 @@ if(false) {
 }
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -3544,7 +3806,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".json-view-root {\n  margin: 0 0 0 22px;\n  padding: 0;\n  font-family: monospace;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  position: relative;\n  left: 0; }\n  .json-view-root .json-view-hide {\n    opacity: 0; }\n  .json-view-root .json-view-name .json-view-tooltip, .json-view-root .json-view-item-name .json-view-tooltip {\n    transform: scale(0.1) translateY(calc(-200% - 26px));\n    opacity: 0; }\n  .json-view-root .json-view-name:hover .json-view-tooltip, .json-view-root .json-view-item-name:hover .json-view-tooltip {\n    transform: scale(1) translateY(calc(-100% - 26px));\n    opacity: 1; }\n  .json-view-root .json-view-points {\n    font-weight: bolder;\n    font-size: 16px;\n    line-height: 5px;\n    letter-spacing: -0.1em; }\n  .json-view-root .json-view-tag {\n    font-weight: bolder; }\n  .json-view-root .json-view-item-type {\n    margin-right: 20px;\n    font-style: italic;\n    font-size: 14px; }\n  .json-view-root .message .json-view-item-type,\n  .json-view-root .message .json-view-expand,\n  .json-view-root .message .json-view-points {\n    color: #f35d6f;\n    fill: #f35d6f; }\n  .json-view-root .boolean .json-view-item-type,\n  .json-view-root .boolean .json-view-expand,\n  .json-view-root .boolean .json-view-points,\n  .json-view-root .boolean .json-view-value {\n    color: #33d391;\n    fill: #33d391; }\n    .json-view-root .boolean .json-view-item-type.true,\n    .json-view-root .boolean .json-view-expand.true,\n    .json-view-root .boolean .json-view-points.true,\n    .json-view-root .boolean .json-view-value.true {\n      color: #33d391;\n      fill: #33d391; }\n    .json-view-root .boolean .json-view-item-type.false,\n    .json-view-root .boolean .json-view-expand.false,\n    .json-view-root .boolean .json-view-points.false,\n    .json-view-root .boolean .json-view-value.false {\n      color: #f35d6f;\n      fill: #f35d6f; }\n  .json-view-root .string .json-view-item-type,\n  .json-view-root .string .json-view-expand,\n  .json-view-root .string .json-view-points,\n  .json-view-root .string .json-view-item-value,\n  .json-view-root .string .json-view-repeated-item-value, .json-view-root .bytes .json-view-item-type,\n  .json-view-root .bytes .json-view-expand,\n  .json-view-root .bytes .json-view-points,\n  .json-view-root .bytes .json-view-item-value,\n  .json-view-root .bytes .json-view-repeated-item-value {\n    color: #e9782a;\n    fill: #e9782a; }\n  .json-view-root .double .json-view-item-type,\n  .json-view-root .double .json-view-expand,\n  .json-view-root .double .json-view-points,\n  .json-view-root .double .json-view-item-value,\n  .json-view-root .double .json-view-repeated-item-value, .json-view-root .float .json-view-item-type,\n  .json-view-root .float .json-view-expand,\n  .json-view-root .float .json-view-points,\n  .json-view-root .float .json-view-item-value,\n  .json-view-root .float .json-view-repeated-item-value {\n    color: #8266de;\n    fill: #8266de; }\n  .json-view-root .int .json-view-item-type,\n  .json-view-root .int .json-view-expand,\n  .json-view-root .int .json-view-points,\n  .json-view-root .int .json-view-item-value,\n  .json-view-root .int .json-view-repeated-item-value, .json-view-root .int32 .json-view-item-type,\n  .json-view-root .int32 .json-view-expand,\n  .json-view-root .int32 .json-view-points,\n  .json-view-root .int32 .json-view-item-value,\n  .json-view-root .int32 .json-view-repeated-item-value, .json-view-root .uint32 .json-view-item-type,\n  .json-view-root .uint32 .json-view-expand,\n  .json-view-root .uint32 .json-view-points,\n  .json-view-root .uint32 .json-view-item-value,\n  .json-view-root .uint32 .json-view-repeated-item-value, .json-view-root .sint32 .json-view-item-type,\n  .json-view-root .sint32 .json-view-expand,\n  .json-view-root .sint32 .json-view-points,\n  .json-view-root .sint32 .json-view-item-value,\n  .json-view-root .sint32 .json-view-repeated-item-value, .json-view-root .fixed32 .json-view-item-type,\n  .json-view-root .fixed32 .json-view-expand,\n  .json-view-root .fixed32 .json-view-points,\n  .json-view-root .fixed32 .json-view-item-value,\n  .json-view-root .fixed32 .json-view-repeated-item-value, .json-view-root .sfixed32 .json-view-item-type,\n  .json-view-root .sfixed32 .json-view-expand,\n  .json-view-root .sfixed32 .json-view-points,\n  .json-view-root .sfixed32 .json-view-item-value,\n  .json-view-root .sfixed32 .json-view-repeated-item-value {\n    color: #23aedd;\n    fill: #23aedd; }\n  .json-view-root .int64 .json-view-item-type,\n  .json-view-root .int64 .json-view-expand,\n  .json-view-root .int64 .json-view-points,\n  .json-view-root .int64 .json-view-item-value,\n  .json-view-root .int64 .json-view-repeated-item-value, .json-view-root .uint64 .json-view-item-type,\n  .json-view-root .uint64 .json-view-expand,\n  .json-view-root .uint64 .json-view-points,\n  .json-view-root .uint64 .json-view-item-value,\n  .json-view-root .uint64 .json-view-repeated-item-value, .json-view-root .sint64 .json-view-item-type,\n  .json-view-root .sint64 .json-view-expand,\n  .json-view-root .sint64 .json-view-points,\n  .json-view-root .sint64 .json-view-item-value,\n  .json-view-root .sint64 .json-view-repeated-item-value, .json-view-root .fixed64 .json-view-item-type,\n  .json-view-root .fixed64 .json-view-expand,\n  .json-view-root .fixed64 .json-view-points,\n  .json-view-root .fixed64 .json-view-item-value,\n  .json-view-root .fixed64 .json-view-repeated-item-value, .json-view-root .sfixed64 .json-view-item-type,\n  .json-view-root .sfixed64 .json-view-expand,\n  .json-view-root .sfixed64 .json-view-points,\n  .json-view-root .sfixed64 .json-view-item-value,\n  .json-view-root .sfixed64 .json-view-repeated-item-value {\n    color: #859900;\n    fill: #859900; }\n  .json-view-root .null .json-view-item-type,\n  .json-view-root .null .json-view-expand,\n  .json-view-root .null .json-view-points,\n  .json-view-root .null .json-view-item-value,\n  .json-view-root .null .json-view-repeated-item-value {\n    color: #e632c0;\n    fill: #e632c0; }\n", ""]);
+exports.push([module.i, ".json-view-root {\n  margin: 0 0 0 22px;\n  padding: 0;\n  font-family: monospace;\n  position: relative;\n  left: 0; }\n  .json-view-root .json-view-hide {\n    opacity: 0; }\n  .json-view-root .json-view-name .json-view-tooltip, .json-view-root .json-view-item-name .json-view-tooltip {\n    transform: scale(0.1) translateY(calc(-200% - 26px));\n    opacity: 0; }\n  .json-view-root .json-view-name:hover .json-view-tooltip, .json-view-root .json-view-item-name:hover .json-view-tooltip {\n    transform: scale(1) translateY(calc(-100% - 26px));\n    opacity: 1; }\n  .json-view-root .json-view-points {\n    font-weight: bolder;\n    font-size: 16px;\n    line-height: 5px;\n    letter-spacing: -0.1em; }\n  .json-view-root .json-view-tag {\n    font-weight: bolder; }\n  .json-view-root .json-view-item-type {\n    margin-right: 20px;\n    font-style: italic;\n    font-size: 14px; }\n  .json-view-root .message .json-view-item-type,\n  .json-view-root .message .json-view-expand,\n  .json-view-root .message .json-view-points {\n    color: #f35d6f;\n    fill: #f35d6f; }\n  .json-view-root .boolean .json-view-item-type,\n  .json-view-root .boolean .json-view-expand,\n  .json-view-root .boolean .json-view-points,\n  .json-view-root .boolean .json-view-value {\n    color: #33d391;\n    fill: #33d391; }\n    .json-view-root .boolean .json-view-item-type.true,\n    .json-view-root .boolean .json-view-expand.true,\n    .json-view-root .boolean .json-view-points.true,\n    .json-view-root .boolean .json-view-value.true {\n      color: #33d391;\n      fill: #33d391; }\n    .json-view-root .boolean .json-view-item-type.false,\n    .json-view-root .boolean .json-view-expand.false,\n    .json-view-root .boolean .json-view-points.false,\n    .json-view-root .boolean .json-view-value.false {\n      color: #f35d6f;\n      fill: #f35d6f; }\n  .json-view-root .string .json-view-item-type,\n  .json-view-root .string .json-view-expand,\n  .json-view-root .string .json-view-points,\n  .json-view-root .string .json-view-item-value,\n  .json-view-root .string .json-view-repeated-item-value, .json-view-root .bytes .json-view-item-type,\n  .json-view-root .bytes .json-view-expand,\n  .json-view-root .bytes .json-view-points,\n  .json-view-root .bytes .json-view-item-value,\n  .json-view-root .bytes .json-view-repeated-item-value {\n    color: #e9782a;\n    fill: #e9782a; }\n  .json-view-root .double .json-view-item-type,\n  .json-view-root .double .json-view-expand,\n  .json-view-root .double .json-view-points,\n  .json-view-root .double .json-view-item-value,\n  .json-view-root .double .json-view-repeated-item-value, .json-view-root .float .json-view-item-type,\n  .json-view-root .float .json-view-expand,\n  .json-view-root .float .json-view-points,\n  .json-view-root .float .json-view-item-value,\n  .json-view-root .float .json-view-repeated-item-value {\n    color: #8266de;\n    fill: #8266de; }\n  .json-view-root .int .json-view-item-type,\n  .json-view-root .int .json-view-expand,\n  .json-view-root .int .json-view-points,\n  .json-view-root .int .json-view-item-value,\n  .json-view-root .int .json-view-repeated-item-value, .json-view-root .int32 .json-view-item-type,\n  .json-view-root .int32 .json-view-expand,\n  .json-view-root .int32 .json-view-points,\n  .json-view-root .int32 .json-view-item-value,\n  .json-view-root .int32 .json-view-repeated-item-value, .json-view-root .uint32 .json-view-item-type,\n  .json-view-root .uint32 .json-view-expand,\n  .json-view-root .uint32 .json-view-points,\n  .json-view-root .uint32 .json-view-item-value,\n  .json-view-root .uint32 .json-view-repeated-item-value, .json-view-root .sint32 .json-view-item-type,\n  .json-view-root .sint32 .json-view-expand,\n  .json-view-root .sint32 .json-view-points,\n  .json-view-root .sint32 .json-view-item-value,\n  .json-view-root .sint32 .json-view-repeated-item-value, .json-view-root .fixed32 .json-view-item-type,\n  .json-view-root .fixed32 .json-view-expand,\n  .json-view-root .fixed32 .json-view-points,\n  .json-view-root .fixed32 .json-view-item-value,\n  .json-view-root .fixed32 .json-view-repeated-item-value, .json-view-root .sfixed32 .json-view-item-type,\n  .json-view-root .sfixed32 .json-view-expand,\n  .json-view-root .sfixed32 .json-view-points,\n  .json-view-root .sfixed32 .json-view-item-value,\n  .json-view-root .sfixed32 .json-view-repeated-item-value {\n    color: #23aedd;\n    fill: #23aedd; }\n  .json-view-root .int64 .json-view-item-type,\n  .json-view-root .int64 .json-view-expand,\n  .json-view-root .int64 .json-view-points,\n  .json-view-root .int64 .json-view-item-value,\n  .json-view-root .int64 .json-view-repeated-item-value, .json-view-root .uint64 .json-view-item-type,\n  .json-view-root .uint64 .json-view-expand,\n  .json-view-root .uint64 .json-view-points,\n  .json-view-root .uint64 .json-view-item-value,\n  .json-view-root .uint64 .json-view-repeated-item-value, .json-view-root .sint64 .json-view-item-type,\n  .json-view-root .sint64 .json-view-expand,\n  .json-view-root .sint64 .json-view-points,\n  .json-view-root .sint64 .json-view-item-value,\n  .json-view-root .sint64 .json-view-repeated-item-value, .json-view-root .fixed64 .json-view-item-type,\n  .json-view-root .fixed64 .json-view-expand,\n  .json-view-root .fixed64 .json-view-points,\n  .json-view-root .fixed64 .json-view-item-value,\n  .json-view-root .fixed64 .json-view-repeated-item-value, .json-view-root .sfixed64 .json-view-item-type,\n  .json-view-root .sfixed64 .json-view-expand,\n  .json-view-root .sfixed64 .json-view-points,\n  .json-view-root .sfixed64 .json-view-item-value,\n  .json-view-root .sfixed64 .json-view-repeated-item-value {\n    color: #859900;\n    fill: #859900; }\n  .json-view-root .null .json-view-item-type,\n  .json-view-root .null .json-view-expand,\n  .json-view-root .null .json-view-points,\n  .json-view-root .null .json-view-item-value,\n  .json-view-root .null .json-view-repeated-item-value {\n    color: #e632c0;\n    fill: #e632c0; }\n", ""]);
 
 // exports
 
