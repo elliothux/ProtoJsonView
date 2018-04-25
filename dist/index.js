@@ -2726,9 +2726,6 @@ var object = function object() {
             key = keyString();
             white();
             next(":");
-            if (Object.hasOwnProperty.call(obj, key)) {
-                error("Duplicate key '" + key + "'");
-            }
             obj.push(_extends({ name: key }, value()));
             white();
             if (ch === "}") {
