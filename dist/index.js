@@ -1182,11 +1182,11 @@ var Message = function (_Component) {
             ' Items'
           )
         ),
-        _react2.default.createElement(
+        !collapsed ? _react2.default.createElement(
           'div',
           { className: 'json-view-items' },
           value.map(this.renderNode)
-        ),
+        ) : null,
         _react2.default.createElement(
           'div',
           { className: 'json-view-end' },
@@ -2854,8 +2854,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -3137,11 +3137,11 @@ var Repeated = function (_Component) {
             ' Items'
           )
         ),
-        _react2.default.createElement(
+        !collapsed ? _react2.default.createElement(
           'div',
           { className: 'json-view-items' },
           value.map(this.renderNode)
-        ),
+        ) : null,
         _react2.default.createElement(
           'div',
           { className: 'json-view-end' },
@@ -3259,8 +3259,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -3323,8 +3323,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -3387,8 +3387,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -3451,8 +3451,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -3704,8 +3704,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -3768,8 +3768,8 @@ var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./index.scss", function() {
-		var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./index.scss");
+	module.hot.accept("!!../node_modules/_css-loader@0.28.11@css-loader/index.js!../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../node_modules/_css-loader@0.28.11@css-loader/index.js!../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!./index.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 

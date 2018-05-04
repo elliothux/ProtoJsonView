@@ -11,7 +11,7 @@ const source = '{"retCode":144115199742103.334,"isValid":false,"list":[1, 2, 3],
 const App = () => (
   <ProtoJsonView
     src={source}
-    collapsed={false}
+    collapsed={2}
     rootName="ROOT"
   />
 );

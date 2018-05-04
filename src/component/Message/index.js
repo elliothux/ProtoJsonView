@@ -149,7 +149,7 @@ class Message extends Component {
             <span if={length === 0} className="json-view-count-empty">Empty</span>
             <span else className="json-view-count">{length} Items</span>
           </div>
-          <div className="json-view-items">{value.map(this.renderNode)}</div>
+          <div if={!collapsed} className="json-view-items">{value.map(this.renderNode)}</div>
           <div className="json-view-end">
             <span onClick={this.handleToggleCollapsed}>{'\u007d'}</span>
           </div>

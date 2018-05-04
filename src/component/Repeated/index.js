@@ -119,7 +119,7 @@ class Repeated extends Component {
             <span if={isEmpty} className="json-view-count-empty">Empty</span>
             <span else className="json-view-count">{length} Items</span>
           </div>
-          <div className="json-view-items">{value.map(this.renderNode)}</div>
+          <div if={!collapsed} className="json-view-items">{value.map(this.renderNode)}</div>
           <div className="json-view-end">
             <span onClick={this.handleToggleCollapsed}>]</span>
           </div>
